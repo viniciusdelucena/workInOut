@@ -3,106 +3,193 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0f766e">
+<meta name="theme-color" content="#0e7068">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Pernas em Dia">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>Pernas em Dia</title>
 <style>
-:root{--bg:#f1f5f4;--card:#fff;--tx:#10201c;--mut:#5f706b;--pri:#0f766e;--pri2:#14b8a6;--h1:#0f766e;--h2:#14b8a6;--ok:#16a34a;--warn:#c2410c;--bd:#e3ebe8;--red:#b91c1c;--sh:0 1px 2px rgba(16,32,28,.05),0 10px 28px rgba(16,32,28,.07)}
-:root.dk{--bg:#0b1211;--card:#141e1c;--tx:#e8f1ef;--mut:#9fb2ad;--bd:#25332f;--warn:#fb923c;--red:#f87171;--sh:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35)}
+:root{--bg:#f3f5f7;--card:#fff;--tx:#0e1a18;--mut:#526070;--bd:#e5e9ee;--h1:#0e7068;--h2:#0c8479;--pri:#0e7068;--grad:linear-gradient(135deg,#0e7068,#0c8479);--soft:rgba(14,112,104,.10);--soft2:rgba(14,112,104,.24);--ok:#15803d;--okt:#166534;--warn:#c2410c;--wt:#9a3412;--red:#dc2626;--rt:#b91c1c;--nav:rgba(255,255,255,.86);--sh:0 1px 2px rgba(14,26,24,.04),0 10px 30px rgba(14,26,24,.06)}
+:root.dk{--bg:#090e0e;--card:#131a1a;--tx:#ecf3f1;--mut:#98a8a5;--bd:#223030;--nav:rgba(19,26,26,.86);--ok:#4ade80;--okt:#4ade80;--warn:#fb923c;--wt:#fb923c;--red:#f87171;--rt:#f87171;--sh:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:104px}
-main{max-width:640px;margin:0 auto;padding:12px 16px}
-h1,h2,h3{letter-spacing:-.2px}
-.hero{background:linear-gradient(135deg,var(--h1),var(--h2));color:#fff;border-radius:26px;padding:20px;margin:4px 0 14px;box-shadow:var(--sh);position:relative;overflow:hidden}
-.hero:after{content:"";position:absolute;right:-50px;top:-50px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.12)}
-.hero:before{content:"";position:absolute;right:30px;bottom:-60px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.08)}
-.hero>*{position:relative;z-index:1}
-.hero h1{margin:0;font-size:25px;font-weight:800}
-.hero p{margin:2px 0 0;opacity:.92;font-size:14px}
-.chip{display:inline-block;background:rgba(255,255,255,.22);padding:3px 12px;border-radius:99px;font-size:13px;font-weight:700;margin-top:8px}
-.card{background:var(--card);border-radius:20px;padding:16px;margin:12px 0;box-shadow:var(--sh);border:1px solid var(--bd)}
-.card.hl{border:2px solid var(--pri)}
-.card h2{margin:0 0 8px;font-size:18px;font-weight:800}
-.card h3{margin:14px 0 4px;font-size:16px}
-.eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
-.ico{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;font-size:23px;flex:none;background:color-mix(in srgb,var(--pri) 14%,var(--card))}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:calc(110px + env(safe-area-inset-bottom))}
+main{max-width:600px;margin:0 auto;padding:0 18px}
+h1,h2,h3{letter-spacing:-.02em}
+.i{stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:calc(16px + env(safe-area-inset-top)) 0 8px}
+.top h1{margin:0;font-size:30px;line-height:1.1;font-weight:800;letter-spacing:-.03em}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.mut{color:var(--mut);font-size:15px}
+.foot{color:var(--mut);font-size:13px;text-align:center;margin:18px 8px 0}
+.lab{font-weight:700;font-size:15px;margin:16px 0 0}
 .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .sp{justify-content:space-between}
-.mut{color:var(--mut);font-size:15px}
-button{font:inherit;border:0;border-radius:14px;padding:12px 18px;background:linear-gradient(135deg,var(--h1),var(--h2));color:#fff;font-weight:700;min-height:48px;cursor:pointer;box-shadow:0 4px 12px color-mix(in srgb,var(--h1) 28%,transparent)}
-button:active{transform:scale(.98)}
-button.sec{background:transparent;color:var(--pri);border:1.5px solid var(--pri);box-shadow:none}
-button.sm{padding:8px 14px;min-height:40px;font-size:15px}
-button.gray{background:var(--bd);color:var(--tx);box-shadow:none}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:24px;padding:18px;margin:12px 0;box-shadow:var(--sh)}
+.card h2{margin:0 0 4px;font-size:19px;font-weight:800}
+.card.pad0{padding:0;overflow:hidden}
+button{font:inherit;font-weight:700;border:0;border-radius:16px;min-height:52px;padding:0 20px;background:var(--grad);color:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .08s}
+button:active{transform:scale(.97)}
+button:disabled{opacity:.4;cursor:default;transform:none}
+button.sec{background:var(--card);color:var(--pri);border:1.5px solid var(--bd)}
+button.gray{background:var(--bd);color:var(--tx)}
+button.link{background:none;color:var(--pri);min-height:48px;padding:0 8px}
+button.link.danger{color:var(--rt)}
+button.sm{min-height:48px;padding:0 14px;font-size:15px;border-radius:14px}
 button.block{width:100%}
-button:disabled{opacity:.4;box-shadow:none}
-.seg{display:flex;background:var(--bd);border-radius:16px;padding:4px;gap:4px}
-.seg button{flex:1;background:transparent;color:var(--mut);box-shadow:none;min-height:44px;padding:8px 6px;font-size:15px}
-.seg button.on{background:var(--card);color:var(--tx);box-shadow:0 1px 5px rgba(0,0,0,.18)}
-.chipb{background:var(--card);color:var(--tx);border:1.5px solid var(--bd);box-shadow:none;text-align:left;width:100%;margin:4px 0;font-weight:600}
-.chipb.on{border-color:var(--pri);background:color-mix(in srgb,var(--pri) 12%,var(--card))}
-.swatch{width:44px;height:44px;border-radius:50%;padding:0;border:3px solid var(--card);box-shadow:0 0 0 2px var(--bd)}
-.swatch.on{box-shadow:0 0 0 3px var(--tx)}
-.strip{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
-.strip button{display:flex;flex-direction:column;align-items:center;gap:1px;padding:8px 0 6px;min-height:0;background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:14px;box-shadow:none;font-size:12px;font-weight:700}
-.strip button.today{border:2px solid var(--pri);background:color-mix(in srgb,var(--pri) 10%,var(--card))}
-.strip .e{font-size:19px;line-height:1.3}
-.strip .dot{width:7px;height:7px;border-radius:50%;background:var(--bd)}
-.strip .dot.on{background:var(--ok)}
-.bar{height:12px;background:var(--bd);border-radius:99px;overflow:hidden;margin:6px 0 2px}
-.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--pri2),var(--pri));border-radius:99px;transition:width .3s}
+button.round{width:48px;height:48px;min-height:48px;border-radius:50%;padding:0;background:var(--card);color:var(--tx);border:1px solid var(--bd)}
+:focus-visible{outline:3px solid var(--pri);outline-offset:2px}
+a{color:var(--pri);font-weight:600}
+a.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 20px;border-radius:16px;background:#b91c1c;color:#fff;text-decoration:none;font-weight:700;margin-top:12px}
+.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0 4px}
+.chips.c3{grid-template-columns:repeat(3,1fr)}
+button.chip{min-height:48px;padding:0 4px;border-radius:14px;background:var(--bg);color:var(--tx);border:1.5px solid var(--bd);font-weight:600;font-size:15px}
+button.chip.on{background:var(--grad);color:#fff;border-color:transparent}
+.hscroll{display:flex;gap:8px;overflow-x:auto;padding:2px 0 8px;margin:0 -18px;padding-left:18px;padding-right:18px;scrollbar-width:none}
+.hscroll::-webkit-scrollbar{display:none}
+.hscroll button.chip{flex:none;padding:0 16px;white-space:nowrap}
+.seg{display:flex;background:var(--bg);border:1px solid var(--bd);border-radius:16px;padding:4px;gap:4px}
+.seg button{flex:1;min-height:48px;padding:0 6px;background:transparent;color:var(--mut);border-radius:12px;font-size:15px;font-weight:600}
+.seg button.on{background:var(--card);color:var(--tx);box-shadow:0 1px 4px rgba(0,0,0,.18)}
+.hero{background:var(--grad);color:#fff;border-radius:28px;padding:16px 18px 14px;margin:12px 0;box-shadow:0 16px 36px var(--soft2);position:relative;overflow:hidden}
+.hero.rest{background:linear-gradient(135deg,#334155,#475569);box-shadow:var(--sh)}
+.hero:after{content:"";position:absolute;right:-70px;top:-70px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.10)}
+.hero>*{position:relative;z-index:1}
+.hero .seg{background:rgba(0,0,0,.26);border:0}
+.hero .seg button{color:#fff}
+.hero .seg button.on{background:#fff;color:#0e1a18;box-shadow:none}
+.hero .big{display:grid;place-items:center;width:56px;height:56px;border-radius:18px;background:rgba(255,255,255,.2);margin:18px 0 12px}
+.hero h2{margin:0;font-size:27px;line-height:1.12;letter-spacing:-.03em;font-weight:800}
+.hero p{margin:6px 0 16px;font-size:16px}
+.hero button.white{background:#fff;color:#0e1a18;min-height:58px;font-size:18px;width:100%}
+.hero button.ghost{background:transparent;color:#fff;min-height:48px;width:100%;margin-top:4px;font-weight:600}
+.pill{display:inline-flex;align-items:center;padding:3px 12px;border-radius:99px;font-size:13px;font-weight:700;background:var(--bd);color:var(--tx)}
+.pill.ok{background:rgba(22,163,74,.16);color:var(--okt)}
+.pill.warn{background:rgba(217,119,6,.18);color:var(--wt)}
+.pill.red{background:rgba(220,38,38,.14);color:var(--rt)}
+.note{border-radius:16px;padding:12px 14px;font-size:15px;margin:12px 0;background:rgba(217,119,6,.12);border:1px solid rgba(217,119,6,.35)}
+.alert{border-radius:20px;padding:16px;margin:12px 0;background:rgba(220,38,38,.10);border:1.5px solid rgba(220,38,38,.55)}
+.alert b{color:var(--rt)}
+.dots{display:flex;gap:6px}
+.dots i{width:12px;height:12px;border-radius:50%;background:var(--bd)}
+.dots i.on{background:var(--ok)}
+.bar{height:10px;background:var(--bd);border-radius:99px;overflow:hidden;margin:6px 0 2px}
+.bar i{display:block;height:100%;background:var(--grad);border-radius:99px;transition:width .3s}
 .bar.done i{background:var(--ok)}
-.badge{display:inline-block;padding:2px 10px;border-radius:99px;background:var(--bd);font-size:13px;font-weight:600}
-.badge.ok{background:var(--ok);color:#fff}
-.badge.warn{background:var(--warn);color:#fff}
-.item{display:flex;gap:14px;align-items:flex-start}
-nav{position:fixed;left:0;right:0;bottom:0;z-index:4;display:flex;justify-content:center;padding:0 12px calc(10px + env(safe-area-inset-bottom))}
-nav div{display:flex;width:100%;max-width:640px;background:var(--card);border:1px solid var(--bd);border-radius:24px;box-shadow:0 8px 30px rgba(0,0,0,.18);padding:6px}
-nav button{flex:1;background:none;box-shadow:none;color:var(--mut);min-height:54px;padding:6px 2px;font-size:11px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:2px;border-radius:18px}
-nav button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-nav button.on{color:var(--pri);background:color-mix(in srgb,var(--pri) 14%,transparent)}
-input[type=number],input[type=time],input[type=text],textarea,select{font:inherit;width:100%;padding:11px 12px;border-radius:12px;border:1.5px solid var(--bd);background:var(--bg);color:var(--tx)}
-input[type=number]{width:90px}
+.strip{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;width:100%;min-height:72px;padding:0;background:none;color:inherit;border-radius:14px;font-weight:inherit}
+.strip .sd{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;padding:9px 0 8px;background:var(--bg);color:var(--mut);border-radius:14px;font-size:12px;font-weight:700;border:1.5px solid transparent}
+.strip .sd.today{border-color:var(--pri);color:var(--tx);background:var(--soft)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--bd)}
+.dot.on{background:var(--ok)}
+.prow{display:grid;grid-template-columns:42px 1fr 88px;gap:10px;align-items:center;padding:10px;background:var(--card);border:1px solid var(--bd);border-radius:20px;margin:8px 0}
+.prow.today{border-color:var(--pri);box-shadow:0 0 0 3px var(--soft)}
+.prow .pd{font-weight:800;font-size:15px;line-height:1.1}
+.prow .pd small{display:block;font-size:10px;color:var(--pri);font-weight:700}
+.prow .pm{display:flex;gap:3px;background:var(--bg);border-radius:14px;padding:3px}
+.prow .pm button{flex:1;flex-direction:column;gap:1px;min-height:50px;padding:4px 0;font-size:10.5px;font-weight:700;background:transparent;color:var(--mut);border-radius:11px}
+.prow .pm button.on{background:var(--grad);color:#fff}
+.opt{display:flex;gap:14px;align-items:center;width:100%;text-align:left;justify-content:flex-start;background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:18px;padding:12px 14px;margin:8px 0;min-height:68px;font-weight:700}
+.opt small{display:block;color:var(--mut);font-weight:500;font-size:14px}
+.opt .ib{width:44px;height:44px;border-radius:14px;background:var(--soft);color:var(--pri);display:grid;place-items:center;flex:none}
+.opt .go{margin-left:auto;color:var(--mut)}
+.pick{display:block;width:100%;text-align:left;background:var(--bg);color:var(--tx);border:1.5px solid var(--bd);border-radius:18px;padding:12px 14px;margin:8px 0;min-height:0;font-weight:700}
+.pick small{display:block;font-weight:500;color:var(--mut);font-size:14px}
+.pick.on{border-color:var(--pri);background:var(--soft)}
+input[type=number],input[type=time],input[type=text],textarea,select{font:inherit;width:100%;padding:12px;border-radius:14px;border:1.5px solid var(--bd);background:var(--bg);color:var(--tx)}
+input[type=number]{width:96px}
 input[type=range]{width:100%;height:36px;accent-color:var(--pri)}
-.chk{display:flex;gap:10px;align-items:flex-start;margin:10px 0;font-size:16px}
-.chk input{width:22px;height:22px;flex:none;margin-top:2px;accent-color:var(--pri)}
-.warn{background:#fef3c7;color:#78350f;border:1px solid #f59e0b;border-radius:14px;padding:12px;font-size:15px;margin:12px 0}
-.alert{background:#fee2e2;color:#7f1d1d;border:2px solid #ef4444;border-radius:16px;padding:14px;margin:12px 0}
-:root.dk .warn{background:#3a2a0a;color:#fde68a}
-:root.dk .alert{background:#3b1212;color:#fecaca}
-.banner{position:sticky;top:0;z-index:6;background:var(--warn);color:#fff;padding:12px 16px;display:none;justify-content:space-between;align-items:center;gap:8px}
+.chk{display:flex;gap:12px;align-items:flex-start;margin:12px 0;font-size:16px;min-height:48px}
+.chk input{width:24px;height:24px;flex:none;margin-top:1px;accent-color:var(--pri)}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;justify-content:center;padding:0 16px calc(12px + env(safe-area-inset-bottom));pointer-events:none}
+nav div{pointer-events:auto;display:flex;width:100%;max-width:400px;background:var(--nav);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid var(--bd);border-radius:28px;padding:6px;box-shadow:0 12px 36px rgba(0,0,0,.18)}
+nav button{flex:1;flex-direction:column;gap:2px;min-height:56px;padding:6px 2px;background:none;color:var(--mut);font-size:12px;font-weight:700;border-radius:22px}
+nav button.on{background:var(--soft);color:var(--pri)}
+.banner{position:fixed;top:0;left:0;right:0;z-index:20;background:var(--warn);color:#fff;padding:calc(12px + env(safe-area-inset-top)) 16px 12px;display:none;justify-content:space-between;align-items:center;gap:10px;font-weight:600}
+:root.dk .banner{color:#1a0f05}
+:root.dk .banner button{color:#1a0f05;background:rgba(0,0,0,.14)}
 .banner.show{display:flex}
-.overlay{position:fixed;inset:0;background:var(--bg);z-index:10;display:none;overflow:auto}
+.banner button{background:rgba(0,0,0,.22);color:#fff;min-height:48px;padding:0 14px;border-radius:12px}
+#toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:var(--tx);color:var(--bg);padding:12px 18px;border-radius:99px;font-weight:600;font-size:15px;opacity:0;pointer-events:none;transition:.25s;z-index:30;max-width:90vw;text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+.overlay{position:fixed;inset:0;z-index:10;display:none}
 .overlay.show{display:block}
-.sheetin{max-width:640px;margin:0 auto;padding:20px 16px 40px}
-.run{--rc:var(--pri);max-width:none;min-height:100%;display:flex;flex-direction:column;padding:16px;background:linear-gradient(180deg,color-mix(in srgb,var(--rc) 18%,var(--bg)),var(--bg) 60%)}
-.run>*{width:100%;max-width:640px;margin-left:auto;margin-right:auto}
-.run.k-mod{--rc:var(--warn)}.run.k-easy{--rc:var(--ok)}.run.k-rest{--rc:var(--mut)}
-.run h2{font-size:26px;text-align:center;margin:6px 0;color:var(--rc)}
+#runner{background:var(--bg);overflow:auto}
+#sheet{background:rgba(6,12,11,.55)}
+#sheet.show{display:flex;align-items:flex-end}
+#sheet .sheetin{background:var(--card);width:100%;max-width:640px;margin:0 auto;border-radius:28px 28px 0 0;padding:10px 20px calc(24px + env(safe-area-inset-bottom));max-height:92vh;overflow:auto;animation:up .22s ease-out}
+#sheet .sheetin h2{margin:0 0 6px;font-size:22px;font-weight:800}
+.grab{width:42px;height:5px;border-radius:9px;background:var(--bd);margin:4px auto 14px}
+#sheet.full{background:var(--bg)}
+#sheet.full .sheetin{border-radius:0;max-height:none;height:100%;background:var(--bg);padding-top:0;animation:none}
+.shead{position:sticky;top:0;z-index:2;background:var(--bg);display:flex;justify-content:space-between;align-items:center;padding:calc(14px + env(safe-area-inset-top)) 0 12px}
+.shead b{font-size:22px;font-weight:800;letter-spacing:-.02em}
+@keyframes up{from{transform:translateY(30px);opacity:.4}to{transform:none;opacity:1}}
+.run{--rc:var(--pri);--rcs:var(--soft);min-height:100%;display:flex;flex-direction:column;padding:calc(14px + env(safe-area-inset-top)) 18px calc(18px + env(safe-area-inset-bottom));background:linear-gradient(180deg,var(--rcs),var(--bg) 60%)}
+.run>*{width:100%;max-width:600px;margin-left:auto;margin-right:auto}
+.run.k-mod{--rc:var(--warn);--rcs:rgba(217,119,6,.16)}
+.run.k-easy{--rc:var(--ok);--rcs:rgba(22,163,74,.14)}
+.run.k-rest{--rc:var(--mut);--rcs:rgba(100,116,139,.14)}
+.rtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.rmeta{display:flex;justify-content:space-between;color:var(--mut);font-size:14px;margin-top:4px}
+.rmeta b{color:var(--rc)}
+.run h2{font-size:30px;text-align:center;margin:14px 0 4px;color:var(--rc);line-height:1.15;font-weight:800}
 .run p{text-align:center;font-size:18px;margin:8px 0}
-.ringbox{position:relative;width:240px;height:240px;margin:6px auto}
-.ringbox .t{position:absolute;inset:0;display:grid;place-items:center;font-size:56px;font-weight:800;color:var(--rc)}
-.repbox{margin:14px auto;padding:20px;border-radius:22px;background:var(--card);border:2px solid var(--rc);font-size:34px;font-weight:800;text-align:center;color:var(--rc);box-shadow:var(--sh)}
+.run p.next{color:var(--mut);font-size:15px}
+.ringbox{position:relative;width:236px;height:236px;margin:8px auto}
+.ringbox .t{position:absolute;inset:0;display:grid;place-items:center;font-size:58px;font-weight:800;color:var(--rc);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.repbox{margin:14px auto;padding:26px 20px;border-radius:26px;background:var(--card);border:2px solid var(--rc);font-size:34px;font-weight:800;text-align:center;color:var(--rc);box-shadow:var(--sh)}
+.rbtn{margin-top:auto;padding-top:16px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.rbtn button.big{width:100%;min-height:62px;font-size:19px;background:var(--rc);color:#fff}
+:root.dk .rbtn button.big{color:#0a0f0f}
 .hist{display:flex;gap:6px;align-items:flex-end;height:120px;margin-top:8px}
 .hist div{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
 .hist i{width:100%;border-radius:8px 8px 0 0;background:var(--bd);min-height:4px}
 .hist i.ok{background:var(--ok)}.hist i.cur{background:var(--pri)}
 .hist span{font-size:11px;color:var(--mut)}
 table{width:100%;border-collapse:collapse;font-size:14px}
-td,th{border-bottom:1px solid var(--bd);padding:6px 4px;text-align:left;vertical-align:top}
-.sess{padding:8px 0;border-top:1px solid var(--bd)}
+td,th{border-bottom:1px solid var(--bd);padding:7px 4px;text-align:left;vertical-align:top}
+.sess{display:flex;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--bd)}
 .sess:first-child{border-top:0}
 ul.l{margin:6px 0;padding-left:20px}
-ul.l li{margin:4px 0}
-a{color:var(--pri);font-weight:600}
-@media print{:root.dk{--bg:#fff;--card:#fff;--tx:#000;--mut:#444;--bd:#bbb}nav,.banner,.noprint,.overlay,.pagehead{display:none!important}body{background:#fff;color:#000;padding:0;font-size:12pt}.card{box-shadow:none;border:1px solid #999;break-inside:avoid}}
+ul.l li{margin:5px 0}
+details{border-top:1px solid var(--bd);padding:4px 0}
+summary{cursor:pointer;font-weight:700;min-height:48px;display:flex;align-items:center;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"›";margin-left:auto;font-size:22px;color:var(--mut);transition:transform .15s}
+details[open] summary:after{transform:rotate(90deg)}
+.swatches{display:flex;gap:12px}
+button.swatch{width:48px;height:48px;min-height:48px;border-radius:50%;padding:0;border:3px solid var(--card);box-shadow:0 0 0 2px var(--bd)}
+button.swatch.on{box-shadow:0 0 0 3px var(--tx)}
+.hero-title{font-size:34px;font-weight:800;letter-spacing:-.04em;line-height:1.05;margin:calc(24px + env(safe-area-inset-top)) 0 6px}
+.ev{border-top:1px solid var(--bd);padding:16px 0}
+.ev:first-of-type{border-top:0;padding-top:6px}
+.ev h3{margin:8px 0 6px;font-size:18px}
+.ev p{margin:6px 0;font-size:15px}
+.pill.n{background:var(--bd);color:var(--tx)}
+.src{display:flex;align-items:center;min-height:48px;padding:0 2px;font-size:15px;border-top:1px solid var(--bd)}
+.srcs{margin:8px 0 0}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{
+ body>*:not(#sheet){display:none!important}
+ #sheet{position:static!important;display:block!important;background:#fff!important}
+ #sheet .sheetin{background:#fff!important;color:#000!important;padding:0!important;max-height:none!important;height:auto!important}
+ .noprint,.shead button{display:none!important}
+ body{background:#fff;padding:0}
+ .mut,td,th{color:#000!important}
+}
 </style>
 </head>
 <body>
-<div class="banner" id="banner"><span id="bantext">⏰ Hora de mexer as pernas! Faça uma pausa ativa (com o carro parado).</span><button class="sm gray" data-act="closeBanner">OK</button></div>
+<div class="banner" id="banner"></div>
 <main id="app"></main>
 <nav><div id="tabs"></div></nav>
 <section id="runner" class="overlay"></section>
 <section id="sheet" class="overlay"></section>
+<div id="toast" role="status" aria-live="polite"></div>
 
 <script>
 /* ============ Utilidades ============ */
@@ -120,22 +207,51 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const fmt=s=>`${Math.floor(s/60)}:${pad(Math.floor(s%60))}`;
 const setText=(id,t)=>{const e=$(id);if(e)e.textContent=t};
 const bar=(v,m)=>{const p=Math.min(100,Math.round(v/Math.max(1,m)*100));return `<div class="bar ${p>=100?'done':''}"><i style="width:${p}%"></i></div>`};
-const SW=['nenhum','quase nada','leve','leve','moderado','moderado','notável','forte','forte','muito forte','máximo'];
-const RP=['repouso','muito leve','muito leve','leve','leve','moderado','moderado','forte','forte','muito forte','máximo'];
 const DOW=['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
 const DOWS=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
 const ORDER=[1,2,3,4,5,6,0];
-const MODES={casa:{ico:'🏠',n:'Casa'},rua:{ico:'🚶',n:'Rua'},descanso:{ico:'😴',n:'Descanso'}};
+const LV=['Nada','Leve','Moderado','Forte'];
+const LVV=[0,3,6,9];
+const lvIdx=v=>v<=0?0:v<=3?1:v<=6?2:3;
+
+/* ============ Ícones ============ */
+const I={
+ home:'<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/>',
+ sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/>',
+ moon:'<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>',
+ cal:'<rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/>',
+ chart:'<path d="M4 20V11M10 20V4M16 20v-6M21 20H3"/>',
+ gear:'<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>',
+ pin:'<path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>',
+ pulse:'<path d="M3 12h4l3-8 4 16 3-8h4"/>',
+ dumbbell:'<path d="M6.5 6.5v11M17.5 6.5v11M3.5 9.5v5M20.5 9.5v5M6.5 12h11"/>',
+ sprout:'<path d="M12 21V11M12 11C12 7 9 5 5 5c0 4 2 6 7 6zM12 14c0-3 2-5 6-5 0 3-2 5-6 5z"/>',
+ chair:'<path d="M7 4v8h10M7 12v8M17 12v8M7 16h10"/>',
+ person:'<circle cx="12" cy="5" r="2"/><path d="M12 8v7M8 11h8M10 21l2-6 2 6"/>',
+ x:'<path d="M6 6l12 12M18 6 6 18"/>',
+ check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+ chev:'<path d="M9 6l6 6-6 6"/>',
+ volOn:'<path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/>',
+ volOff:'<path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M16.5 9.5l5 5M21.5 9.5l-5 5"/>',
+ pause:'<path d="M8 5v14M16 5v14"/>',
+ play:'<path d="M7 5l12 7-12 7z"/>',
+ phone:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>',
+ file:'<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/>',
+ bed:'<path d="M3 18V9M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/>'};
+const SH=()=>({s:S.set.shiftStart??7,e:S.set.shiftEnd??21});
+const ic=(n,s=22)=>`<svg class="i" width="${s}" height="${s}" viewBox="0 0 24 24" aria-hidden="true">${I[n]||''}</svg>`;
+
+const MODES={casa:{ic:'home',n:'Casa'},rua:{ic:'sun',n:'Rua'},descanso:{ic:'moon',n:'Descanso'}};
 const PRESETS={
- alt:{n:'Alternar casa e rua',d:'Casa seg/qua/sex, rua ter/qui/sáb, descanso no domingo',m:['descanso','casa','rua','casa','rua','casa','rua']},
- fds:{n:'Casa na semana, rua no fim de semana',d:'Casa de seg a sex (menos quarta), rua sáb e dom',m:['rua','casa','casa','descanso','casa','casa','rua']},
- casa:{n:'Só em casa',d:'Casa de segunda a sábado, descanso no domingo',m:['descanso','casa','casa','casa','casa','casa','casa']},
- rua:{n:'Só na rua',d:'Rua de segunda a sábado, descanso no domingo',m:['descanso','rua','rua','rua','rua','rua','rua']}};
+ alt:{n:'Casa e rua alternados',d:'Casa seg, qua e sex. Rua ter, qui e sáb. Dom descanso.',m:['descanso','casa','rua','casa','rua','casa','rua']},
+ fds:{n:'Casa na semana, rua no fim de semana',d:'Casa de seg a sex (quarta descansa). Rua sáb e dom.',m:['rua','casa','casa','descanso','casa','casa','rua']},
+ casa:{n:'Só em casa',d:'Casa de segunda a sábado. Dom descanso.',m:['descanso','casa','casa','casa','casa','casa','casa']},
+ rua:{n:'Só na rua',d:'Rua de segunda a sábado. Dom descanso.',m:['descanso','rua','rua','rua','rua','rua','rua']}};
 const mkPlan=m=>Object.fromEntries(m.map((x,i)=>[i,{mode:x,time:''}]));
-const ACC={teal:['#0f766e','#14b8a6','#2dd4bf','Verde-água'],blue:['#1d4ed8','#3b82f6','#60a5fa','Azul'],purple:['#6d28d9','#8b5cf6','#a78bfa','Roxo'],orange:['#c2410c','#f97316','#fb923c','Laranja'],pink:['#be185d','#ec4899','#f472b6','Rosa']};
+const ACC={teal:['#0e7068','#0c8479','#2dd4bf','Verde-água'],blue:['#1d4ed8','#2563eb','#60a5fa','Azul'],purple:['#6d28d9','#7c3aed','#a78bfa','Roxo'],orange:['#b43c0a','#c94c0a','#fb923c','Laranja'],pink:['#be185d','#db2777','#f472b6','Rosa']};
 
 /* ============ Dados ============ */
-const defaults=()=>({v:2,onboarded:false,profile:{name:'',doctor:''},week:1,weekStart:todayKey(),days:{},history:[],plan:mkPlan(PRESETS.alt.m),preset:'alt',accent:'teal',theme:'auto',set:{remind:60,voice:true,gps:false},last:Date.now()});
+const defaults=()=>({v:2,onboarded:false,profile:{name:'',doctor:''},week:1,weekStart:todayKey(),days:{},history:[],plan:mkPlan(PRESETS.alt.m),preset:'alt',accent:'teal',theme:'auto',set:{remind:60,voice:true,gps:false,shiftStart:7,shiftEnd:21},last:Date.now()});
 function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.v===2){const d=defaults();return{...d,...s,profile:{...d.profile,...s.profile},plan:{...d.plan,...(s.plan||{})},set:{...d.set,...s.set}}}}catch(e){}return defaults()}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 let S=load();
@@ -143,30 +259,34 @@ let tab='hoje';
 const D=(k=todayKey())=>S.days[k]||(S.days[k]={place:null,ci:null,sessions:[]});
 const modeFor=k=>S.days[k]?.place||S.plan[dowOf(k)]?.mode||'casa';
 
-/* ============ Tema e personalização ============ */
+/* ============ Tema e cores ============ */
+const hexRgb=h=>{const n=parseInt(h.slice(1),16);return `${n>>16&255},${n>>8&255},${n&255}`};
 function applyTheme(){
   try{
     const mq=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)');
     const dark=S.theme==='dark'||(S.theme==='auto'&&!!mq&&mq.matches);
-    const root=document.documentElement,a=ACC[S.accent]||ACC.teal;
+    const root=document.documentElement,a=ACC[S.accent]||ACC.teal,st=root.style;
     root.classList.toggle('dk',dark);
-    root.style.setProperty('--h1',a[0]);root.style.setProperty('--h2',a[1]);
-    root.style.setProperty('--pri',dark?a[2]:a[0]);root.style.setProperty('--pri2',dark?a[0]:a[1]);
-    const m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',a[0]);
+    const pri=dark?a[2]:a[0];
+    st.setProperty('--h1',a[0]);st.setProperty('--h2',a[1]);st.setProperty('--pri',pri);
+    st.setProperty('--grad',`linear-gradient(135deg,${a[0]},${a[1]})`);
+    st.setProperty('--soft',`rgba(${hexRgb(pri)},${dark?.16:.10})`);
+    st.setProperty('--soft2',`rgba(${hexRgb(a[0])},${dark?.35:.28})`);
+    const m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',dark?'#090e0e':a[0]);
   }catch(e){}
 }
-try{window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',applyTheme)}catch(e){}
+try{window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{applyTheme()})}catch(e){}
 
 /* ============ Programa de 8 semanas ============ */
 const PROG=[
- {w:1,aero:60, sess:15,str:2,sets:2,lvl:0,brk:4,mod:2,easy:2},
- {w:2,aero:80, sess:20,str:2,sets:2,lvl:0,brk:4,mod:3,easy:2},
+ {w:1,aero:60, sess:15,str:2,sets:2,lvl:0,brk:3,mod:2,easy:2},
+ {w:2,aero:80, sess:20,str:2,sets:2,lvl:0,brk:3,mod:3,easy:2},
  {w:3,aero:100,sess:25,str:2,sets:2,lvl:1,brk:4,mod:3,easy:2},
  {w:4,aero:120,sess:30,str:2,sets:2,lvl:1,brk:4,mod:4,easy:2},
  {w:5,aero:135,sess:30,str:3,sets:3,lvl:2,brk:4,mod:4,easy:2},
- {w:6,aero:150,sess:30,str:3,sets:3,lvl:2,brk:4,mod:5,easy:2},
- {w:7,aero:150,sess:35,str:3,sets:3,lvl:3,brk:4,mod:5,easy:1},
- {w:8,aero:150,sess:35,str:3,sets:3,lvl:3,brk:4,mod:6,easy:1}];
+ {w:6,aero:150,sess:30,str:3,sets:3,lvl:2,brk:5,mod:5,easy:2},
+ {w:7,aero:150,sess:35,str:3,sets:3,lvl:3,brk:5,mod:5,easy:1},
+ {w:8,aero:150,sess:35,str:3,sets:3,lvl:3,brk:5,mod:6,easy:1}];
 const prog=()=>PROG[Math.min(Math.max(S.week,1),PROG.length)-1];
 
 const FLAGS=[
@@ -176,13 +296,17 @@ const FLAGS=[
  'Falta de ar repentina, dor no peito, tontura ou batimento muito acelerado'];
 
 const KINDS={
- walk:{ico:'🚶',n:'Caminhada em intervalos'},
- cardio:{ico:'🏠',n:'Cardio em casa (marcha)'},
- strength:{ico:'💪',n:'Força em casa'},
- stretch:{ico:'🧘',n:'Alongamento e mobilidade'},
- sit:{ico:'💺',n:'Pausa sentado'},
- stand:{ico:'🧍',n:'Pausa em pé'}};
-const LOGK={walk:'walk',cardio:'cardio',strength:'strength',stretch:'stretch',sit:'break',stand:'break'};
+ walk:{ic:'pin',n:'Caminhada em intervalos'},
+ cardio:{ic:'pulse',n:'Cardio em casa'},
+ strength:{ic:'dumbbell',n:'Força em casa'},
+ stretch:{ic:'sprout',n:'Alongamento'},
+ sit:{ic:'chair',n:'Pausa sentado'},
+ stand:{ic:'person',n:'Pausa em pé'},
+ micro:{ic:'pulse',n:'Micro-pausa de 1 min'},
+ elev:{ic:'bed',n:'Pernas para cima'}};
+const kindOf=s=>KINDS[s&&(s.sub||s.kind)]||KINDS.walk;
+const LOGK={walk:'walk',cardio:'cardio',strength:'strength',stretch:'stretch',sit:'break',stand:'break',micro:'break',elev:'rest'};
+const HEAVY=['walk','cardio','strength'];
 
 /* ============ Segurança: check-in diário ============ */
 function gate(ci){
@@ -190,13 +314,13 @@ function gate(ci){
   const f=ci.flags||[];
   if(f.includes(3))return{lv:'emergency',msg:'Esses sinais podem indicar algo grave. Ligue 192 (SAMU) ou vá a um pronto-socorro agora. Não faça exercícios.'};
   if(f.length)return{lv:'stop',msg:'Não treine hoje. Esses sinais precisam de avaliação médica: fale com sua médica ou procure atendimento ainda hoje.'};
-  if(ci.pain>=7||ci.swell>=8)return{lv:'rest',msg:'Dor ou inchaço altos hoje. Hoje é dia de descanso ativo: só alongamento e pausas leves. Se continuar assim por dias, fale com sua médica.'};
-  if(ci.pain>=4||ci.swell>=6)return{lv:'light',msg:'Dia de volume reduzido: as sessões ficam mais curtas e sem os exercícios mais exigentes. Observe como as pernas respondem.'};
+  if(ci.pain>=7||ci.swell>=8)return{lv:'rest',msg:'Dor ou inchaço altos hoje: só alongamento e pausas leves. Se continuar assim por dias, fale com sua médica.'};
+  if(ci.pain>=4||ci.swell>=6)return{lv:'light',msg:'Volume reduzido hoje: sessões mais curtas e sem os exercícios mais exigentes. Observe como as pernas respondem.'};
   return{lv:'ok',msg:'Tudo certo para o plano de hoje.'};
 }
-const canDo=k=>{const g=gate(D().ci).lv;const heavy=['walk','cardio','strength'].includes(k);
+const canDo=k=>{const g=gate(D().ci).lv;
   if(g==='stop'||g==='emergency')return false;
-  return heavy?(g==='ok'||g==='light'):true};
+  return HEAVY.includes(k)?(g==='ok'||g==='light'):true};
 
 /* ============ Estatísticas ============ */
 const weekKeys=()=>Array.from({length:7},(_,i)=>addDays(S.weekStart,i));
@@ -213,7 +337,6 @@ function statsFor(keys){
 }
 const weekStats=()=>statsFor(weekKeys());
 const allSessions=()=>Object.values(S.days).flatMap(d=>d.sessions).sort((a,b)=>a.ts-b.ts);
-const HEAVY=['walk','cardio','strength'];
 
 /* ============ Exercícios ============ */
 const HOME_EX=[
@@ -233,16 +356,16 @@ const stretchSteps=()=>[
 const ankle=s=>T('Círculos com os tornozelos','Gire os pés em círculos, metade do tempo para cada lado.',s,'warm');
 
 const ROUT={
- sit:[T('Bombeamento de tornozelo','Levante a ponta dos pés e depois os calcanhares, alternando, em ritmo contínuo.',40,'work'),
-  ankle(40),
-  T('Extensão de joelho','Estique uma perna à altura do quadril, segure 2 segundos e desça. Alterne as pernas.',60,'work'),
-  T('Elevação de panturrilha sentado','Com os pés no chão, suba os calcanhares e desça devagar.',45,'work'),
-  T('Marcha sentado','Levante um joelho de cada vez, como se marchasse.',45,'work')],
- stand:[T('Marcha no lugar','Levante os joelhos em ritmo confortável.',60,'work'),
-  T('Elevação de panturrilha','Suba nas pontas dos pés e desça devagar. Apoie-se no carro se precisar.',45,'work'),
-  T('Agachamento parcial','Agache só até onde for confortável, com a coluna reta e sem forçar o joelho.',45,'work'),
-  T('Caminhada leve','Ande em volta do carro ou pela calçada, com passos firmes.',60,'work'),
-  ...stretchSteps().slice(0,2)]
+ micro:[T('Bombeamento de tornozelo','Sentado, com os pés apoiados: suba as pontas dos pés e depois os calcanhares, em ritmo contínuo e confortável. Cerca de um movimento a cada 2 segundos.',60,'work')],
+ sit:[T('Bombeamento de tornozelo','Suba as pontas dos pés e depois os calcanhares, em ritmo contínuo e confortável.',60,'work'),
+  T('Calcanhares para cima','Com os joelhos dobrados em 90° e os pés no chão, levante só os calcanhares e desça devagar.',60,'work'),
+  T('Extensão de joelho','Estique uma perna até quase ficar reta, sem travar, segure 2 segundos e desça. Alterne as pernas.',50,'work'),
+  ankle(40)],
+ stand:[T('Caminhada leve','Ande em ritmo leve e confortável, como numa caminhada devagar. Pode ser em volta do carro ou pela calçada.',180,'work'),
+  T('Elevação de panturrilha','Em pé, apoie-se no carro ou na parede. Suba nas pontas dos pés, segure 1 segundo e desça devagar.',45,'work'),
+  ...stretchSteps().slice(0,2)],
+ elev:[T('Posicione-se','Deite-se de costas e apoie as pernas mais altas que o quadril (almofadas ou parede), com os joelhos levemente dobrados.',30,'rest'),
+  T('Pernas para cima','Relaxe e respire devagar. Se sentir dor, formigamento ou desconforto, baixe as pernas.',600,'easy')]
 };
 
 function buildWalk(kind,light){
@@ -294,18 +417,15 @@ function planCheck(){
   const modes=ORDER.map(i=>S.plan[i].mode);
   const casa=modes.filter(m=>m==='casa').length,rua=modes.filter(m=>m==='rua').length,desc=modes.filter(m=>m==='descanso').length;
   const act=casa+rua,need=Math.ceil(p.aero/p.sess);
-  const msgs=[];
-  if(act<need)msgs.push(`Para a meta aeróbica da semana ${S.week} (${p.aero} min) você precisa de cerca de ${need} dias ativos de ${p.sess} min. Seu plano tem ${act}.`);
-  else msgs.push(`Seu plano cobre a meta aeróbica da semana ${S.week} (cerca de ${need} dias ativos de ${p.sess} min). ✅`);
-  msgs.push(`Força (${p.str}x por semana): faça em dias de casa ou ao chegar em casa nos dias de rua, sem treinar dois dias seguidos.`);
-  return{casa,rua,desc,msgs};
+  const ok=act>=need;
+  return{casa,rua,desc,ok,msg:ok?`Seu plano cobre a meta da semana ${S.week}: ${p.aero} min de aeróbico, cerca de ${need} dias de ${p.sess} min.`:`Para a meta da semana ${S.week} (${p.aero} min de aeróbico) você precisa de cerca de ${need} dias ativos de ${p.sess} min. Seu plano tem ${act}.`};
 }
+const durFor=(kind,light)=>{const p=prog();return kind==='walk'||kind==='cardio'?Math.max(8,Math.round(p.sess*(light?0.6:1)))+' min':kind==='strength'?'~15 min':'~4 min'};
 function suggest(){
   const p=prog(),ws=weekStats(),d=D(),g=gate(d.ci),place=modeFor(todayKey());
-  if(g.lv==='stop'||g.lv==='emergency')return null;
-  if(g.lv==='none')return{kind:'checkin'};
-  if(g.lv==='rest')return{kind:'stretch',reason:'Hoje é descanso ativo: alongamento e mobilidade ajudam sem sobrecarregar.'};
-  if(place==='descanso')return{kind:'stretch',rest:true,reason:'Hoje é dia de descanso no seu plano. Um alongamento leve ajuda, mas é opcional.'};
+  if(g.lv==='stop'||g.lv==='emergency'||g.lv==='none')return null;
+  if(g.lv==='rest')return{kind:'stretch',rest:true,reason:'Dor ou inchaço altos: só alongamento hoje.'};
+  if(place==='descanso')return{kind:'stretch',rest:true,reason:'Hoje é descanso no seu plano. Alongar é opcional.'};
   const idx=Math.min(6,Math.max(0,daysSince(S.weekStart)));
   const daysLeft=Math.max(1,7-idx);
   const needStr=p.str-ws.str,aeroLeft=p.aero-ws.aero;
@@ -314,10 +434,10 @@ function suggest(){
   const y=S.days[addDays(todayKey(),-1)];
   const yStr=!!y&&y.sessions.some(s=>s.kind==='strength');
   if(needStr>0&&!todayStr&&!yStr&&(place==='casa'||needStr>=daysLeft))
-    return{kind:'strength',reason:`Você fez ${ws.str} de ${p.str} treinos de força nesta semana. Força em pelo menos 2 dias por semana faz parte das diretrizes da OMS.${place==='rua'?' Faça quando chegar em casa.':''}`};
+    return{kind:'strength',reason:`Força: ${ws.str} de ${p.str} nesta semana.${place==='rua'?' Faça ao chegar em casa.':''}`};
   if(aeroLeft>0&&todayAero<p.sess*0.8)
-    return{kind:place==='rua'?'walk':'cardio',reason:`Faltam ${aeroLeft} min de atividade aeróbica moderada nesta semana (meta: ${p.aero} min).`};
-  return{kind:'stretch',done:true,reason:'Meta do dia cumprida. Se quiser, faça um alongamento ou uma pausa ativa.'};
+    return{kind:place==='rua'?'walk':'cardio',reason:`Faltam ${aeroLeft} min de aeróbico na semana.`};
+  return{kind:'stretch',done:true,reason:'Se quiser, alongue um pouco.'};
 }
 function setPlanMode(i,m){
   S.plan[i].mode=m;
@@ -349,147 +469,196 @@ function closeWeek(dec){
   S.history.push({week:S.week,start:S.weekStart,aero:r.ws.aero,aeroT:r.p.aero,str:r.ws.str,strT:r.p.str,swell:r.ws.swell,pain:r.ws.pain,flags:r.ws.flags,ci:r.ws.ci,dec});
   if(dec==='avancar')S.week=Math.min(S.week+1,PROG.length);
   if(dec==='reduzir')S.week=Math.max(1,S.week-1);
-  S.weekStart=todayKey();save();closeSheet();render();
+  S.weekStart=todayKey();save();closeSheet();render();window.scrollTo(0,0);
 }
 
-/* ============ Componentes visuais ============ */
-const ICONS={
- hoje:'<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
- semana:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/>',
- treinar:'<path d="M3 12h4l3-8 4 16 3-8h4"/>',
- evolucao:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
- guia:'<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/>'};
-const TABS=[['hoje','Hoje'],['semana','Semana'],['treinar','Treinar'],['evolucao','Evolução'],['guia','Guia']];
+/* ============ Componentes ============ */
 function ring(pct,size=88,sw=9,color='#fff',track='rgba(255,255,255,.28)'){
   const r=(size-sw)/2,c=2*Math.PI*r,off=c*(1-Math.min(100,pct)/100),h=size/2;
-  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" role="img" aria-label="${pct}% da meta da semana"><circle cx="${h}" cy="${h}" r="${r}" fill="none" stroke="${track}" stroke-width="${sw}"/><circle cx="${h}" cy="${h}" r="${r}" fill="none" stroke="${color}" stroke-width="${sw}" stroke-linecap="round" stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}" transform="rotate(-90 ${h} ${h})"/><text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="${Math.round(size*0.26)}" font-weight="800" fill="${color}">${pct}%</text></svg>`;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" role="img" aria-label="${pct}% da meta da semana"><circle cx="${h}" cy="${h}" r="${r}" fill="none" stroke-width="${sw}" style="stroke:${track}"/><circle cx="${h}" cy="${h}" r="${r}" fill="none" stroke-width="${sw}" stroke-linecap="round" stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}" transform="rotate(-90 ${h} ${h})" style="stroke:${color}"/><text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-size="${Math.round(size*0.27)}" font-weight="800" style="fill:${color}">${pct}%</text></svg>`;
 }
-const pageHead=(t,s)=>`<div class="pagehead" style="padding:8px 2px 2px"><h1 style="margin:0;font-size:28px;font-weight:800;letter-spacing:-.5px">${t}</h1><p class="mut" style="margin:2px 0 0">${s}</p></div>`;
-const seg=(cur,attrs)=>`<div class="seg">${['casa','rua','descanso'].map(m=>`<button class="${cur===m?'on':''}" ${attrs(m)}>${MODES[m].ico} ${MODES[m].n}</button>`).join('')}</div>`;
+const pageTop=(title,sub)=>`<div class="top"><div>${sub?`<div class="eyebrow">${sub}</div>`:''}<h1>${title}</h1></div><button class="round" data-act="settings" aria-label="Ajustes">${ic('gear')}</button></div>`;
+const seg=(cur,attrs)=>`<div class="seg">${['casa','rua','descanso'].map(m=>`<button class="${cur===m?'on':''}" ${attrs(m)} aria-pressed="${cur===m}">${ic(MODES[m].ic,18)} ${MODES[m].n}</button>`).join('')}</div>`;
 function greeting(){const h=new Date().getHours();return (h<12?'Bom dia':h<18?'Boa tarde':'Boa noite')+(S.profile.name?`, ${esc(S.profile.name)}`:'')}
 function overallPct(){const p=prog(),ws=weekStats();return Math.round((Math.min(1,ws.aero/p.aero)+Math.min(1,ws.str/p.str))/2*100)}
 function weekStrip(){
   const t=todayKey(),dow=(new Date().getDay()+6)%7,monday=addDays(t,-dow);
-  return `<div class="strip">${ORDER.map((i,j)=>{
-    const k=addDays(monday,j),m=modeFor(k),done=!!S.days[k]&&S.days[k].sessions.some(s=>HEAVY.includes(s.kind));
-    return `<button class="${k===t?'today':''}" data-act="planday" data-d="${i}" aria-label="${DOW[i]}: ${MODES[m].n}"><span>${DOWS[i]}</span><span class="e">${MODES[m].ico}</span><span class="dot ${done?'on':''}"></span></button>`}).join('')}</div>`;
+  const days=ORDER.map((i,j)=>{const k=addDays(monday,j),m=modeFor(k),done=!!S.days[k]&&S.days[k].sessions.some(s=>HEAVY.includes(s.kind));return{i,k,m,done}});
+  return `<button class="strip" data-act="tab" data-v="semana" aria-label="Ver minha semana. ${days.map(d=>`${DOW[d.i]}: ${MODES[d.m].n}${d.done?', treino feito':''}`).join('; ')}">${days.map(d=>`<span class="sd ${d.k===t?'today':''}">${DOWS[d.i]}${ic(MODES[d.m].ic,18)}<span class="dot ${d.done?'on':''}"></span></span>`).join('')}</button>`;
 }
-const swatches=()=>`<div class="row" style="gap:12px">${Object.entries(ACC).map(([k,a])=>`<button class="swatch ${S.accent===k?'on':''}" style="background:linear-gradient(135deg,${a[0]},${a[1]})" data-act="accent" data-v="${k}" aria-label="${a[3]}"></button>`).join('')}</div>`;
+const swatches=()=>`<div class="swatches">${Object.entries(ACC).map(([k,a])=>`<button class="swatch ${S.accent===k?'on':''}" style="background:linear-gradient(135deg,${a[0]},${a[1]})" data-act="accent" data-v="${k}" aria-label="${a[3]}" aria-pressed="${S.accent===k}"></button>`).join('')}</div>`;
 
 /* ============ Telas ============ */
+let OB=false,CI={swell:null,pain:null},EDIT=false;
+
 function viewOnboard(){
-  return `<div class="hero"><h1>Pernas em Dia 🦵</h1><p>Seu programa pessoal de 8 semanas para movimentar as pernas.</p><span class="chip">Em casa ou na rua, do seu jeito</span></div>
-  <div class="card"><h2>1. Sobre você</h2>
-   <label class="mut">Como quer ser chamado? (opcional)</label><input type="text" data-prof="name" value="${esc(S.profile.name)}">
-   <label class="mut" style="display:block;margin-top:10px">O que sua médica recomendou ou proibiu? (opcional)</label>
-   <textarea rows="3" data-prof="doctor" placeholder="Ex.: caminhadas leves, evitar agachar fundo...">${esc(S.profile.doctor)}</textarea></div>
-  <div class="card"><h2>2. Como é a sua semana?</h2><p class="mut" style="margin-top:0">Escolha um modelo. Depois você ajusta dia a dia, com horário, na aba Semana.</p>
-   ${Object.entries(PRESETS).map(([k,p])=>`<button class="chipb ${S.preset===k?'on':''}" data-act="preset" data-v="${k}">${p.n}<div class="mut" style="font-weight:400;font-size:14px">${p.d}</div></button>`).join('')}</div>
-  <div class="card"><h2>3. Sua cor</h2>${swatches()}</div>
-  <div class="card"><label class="chk"><input type="checkbox" id="ob_ok1"> Entendo que este app não é médico, não faz diagnóstico e não substitui a orientação da minha médica.</label>
-   <label class="chk"><input type="checkbox" id="ob_ok2"> Vou parar e procurar atendimento se tiver os sinais de alerta (aba Guia).</label>
-   <button class="block" data-act="onboard">Começar o programa</button></div>`;
+  return `<div class="hero-title">Pernas em Dia</div>
+  <p class="mut" style="margin:0 0 6px;font-size:17px">Seu programa pessoal de 8 semanas para movimentar as pernas, em casa ou na rua.</p>
+  <div class="card"><label class="lab" style="margin-top:0" for="ob_name">Como quer ser chamado? <span class="mut" style="font-weight:400">(opcional)</span></label>
+   <input type="text" id="ob_name" data-prof="name" value="${esc(S.profile.name)}" autocomplete="given-name" style="margin-top:8px"></div>
+  <div class="card"><h2>Como é a sua semana?</h2><p class="mut" style="margin:0 0 6px">Escolha um modelo. Você ajusta cada dia depois.</p>
+   ${Object.entries(PRESETS).map(([k,p])=>`<button class="pick ${S.preset===k?'on':''}" data-act="preset" data-v="${k}" aria-pressed="${S.preset===k}">${p.n}<small>${p.d}</small></button>`).join('')}</div>
+  <div class="card"><label class="chk" style="margin-top:0"><input type="checkbox" id="ob_ok" ${OB?'checked':''}> <span>Entendo que o app não é médico nem substitui minha médica, e que devo procurar atendimento se tiver sinais de alerta.</span></label>
+   <button class="block" data-act="onboard">Começar</button></div>`;
 }
 
+function ciForm(){
+  const row=(f,label)=>`<div class="lab">${label}</div><div class="chips">${LV.map((n,i)=>{const on=CI[f]!==null&&lvIdx(CI[f])===i;return `<button class="chip ${on?'on':''}" data-act="cis" data-f="${f}" data-v="${LVV[i]}" aria-pressed="${on}">${n}</button>`}).join('')}</div>`;
+  const ready=CI.swell!==null&&CI.pain!==null;
+  return `<div class="card"><h2>Como estão suas pernas hoje?</h2><p class="mut" style="margin:0">O app ajusta o treino ao que você sente.</p>
+   ${row('swell','Inchaço atrás do joelho')}${row('pain','Dor ou desconforto')}
+   <button class="block" style="margin-top:16px" data-act="ciok" ${ready?'':'disabled'}>Confirmar</button>
+   <div class="row" style="justify-content:center;margin-top:4px"><button class="link danger" data-act="cialert">Tenho um sinal de alerta</button>${EDIT?'<button class="link" data-act="cicancel">Cancelar</button>':''}</div></div>`;
+}
+function ciSummary(ci,g){
+  const pill={ok:['ok','Liberado'],light:['warn','Volume reduzido'],rest:['warn','Só alongar'],stop:['red','Treino suspenso'],emergency:['red','Emergência']}[g.lv];
+  return `<div class="card"><div class="row sp" style="flex-wrap:nowrap"><div><div class="eyebrow">Pernas hoje</div><b>Inchaço ${LV[lvIdx(ci.swell)].toLowerCase()} · Dor ${LV[lvIdx(ci.pain)].toLowerCase()}</b></div><span class="pill ${pill[0]}">${pill[1]}</span></div>
+   ${g.lv==='light'||g.lv==='rest'?`<p class="mut" style="margin:8px 0 0">${esc(g.msg)}</p>`:''}
+   <button class="link" style="margin:4px 0 -8px -8px" data-act="ciedit">Alterar</button></div>`;
+}
+function mainCard(g,mode){
+  const sg=suggest();if(!sg)return '';
+  const m=KINDS[sg.kind],light=g.lv==='light'&&HEAVY.includes(sg.kind);
+  const rest=sg.rest&&true;
+  const title=g.lv==='rest'?'Descanso ativo':sg.rest?'Dia de descanso':sg.done?'Meta de hoje cumprida':m.n;
+  const label=sg.rest?'Alongar agora':sg.done?'Alongar':'Começar';
+  return `<div class="hero ${rest?'rest':''}">${seg(mode,x=>`data-act="place" data-v="${x}"`)}
+   <div class="big">${ic(m.ic,28)}</div><h2>${title}</h2>
+   <p>${durFor(sg.kind,light)} · ${esc(sg.reason)}${light?' Versão leve hoje.':''}</p>
+   <button class="white" data-act="start" data-v="${sg.kind}">${ic('play',20)} ${label}</button>
+   <button class="ghost" data-act="more">Outras opções</button></div>`;
+}
+function lastMoveText(){
+  const d=S.days[todayKey()],t=d&&d.sessions.length?Math.max(...d.sessions.map(s=>s.ts||0)):0;
+  if(!t)return 'Nenhuma pausa hoje ainda';
+  const m=Math.max(0,Math.round((Date.now()-t)/60000));
+  return m<1?'Última atividade agora':m<60?`Última atividade há ${m} min`:`Última atividade há ${Math.floor(m/60)} h ${m%60} min`;
+}
 function viewHoje(){
   if(!S.onboarded)return viewOnboard();
-  const p=prog(),ws=weekStats(),d=D(),g=gate(d.ci),idx=daysSince(S.weekStart);
-  const mode=modeFor(todayKey()),pl=S.plan[new Date().getDay()]||{};
-  const brkToday=d.sessions.filter(s=>s.kind==='break'||s.kind==='stretch').length;
-  let h=`<div class="hero"><div class="row sp" style="flex-wrap:nowrap;gap:12px"><div style="min-width:0"><h1>${greeting()} 👋</h1>
-    <p>${new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'})}</p>
-    <span class="chip">Semana ${S.week} de ${PROG.length}</span>
-    <p style="margin-top:10px">Hoje: <b>${MODES[mode].ico} ${MODES[mode].n}${pl.time&&!d.place?' · '+esc(pl.time):''}</b></p></div>
-    <div style="flex:none;text-align:center">${ring(overallPct())}<div style="font-size:12px;opacity:.9;margin-top:2px">da semana</div></div></div></div>`;
-  if(g.lv==='emergency'||g.lv==='stop')h+=`<div class="alert"><b>${g.lv==='emergency'?'🚨 Atenção':'⚠️ Hoje não treine'}</b><p style="margin:6px 0 0">${esc(g.msg)}</p></div>`;
-  if(idx>=7)h+=`<div class="card hl"><h2>📋 Semana concluída</h2><p>Faça a revisão para decidir se avança, repete ou reduz a carga.</p><button data-act="review">Fazer revisão da semana</button></div>`;
-  h+=`<div class="card"><div class="row sp" style="margin-bottom:10px"><span class="eyebrow">Sua semana</span><a href="#" data-act="tab" data-v="semana">Editar plano</a></div>${weekStrip()}</div>`;
-  if(!d.ci)h+=`<div class="card hl"><div class="item"><div class="ico">🩺</div><div style="flex:1"><h2 style="margin-bottom:2px">Check-in de hoje</h2><p class="mut" style="margin:0 0 10px">Antes de treinar, avalie inchaço e dor (30 s). O app libera, reduz ou suspende o treino.</p><button data-act="checkin">Fazer check-in</button></div></div></div>`;
-  else{
-    const prev=Object.keys(S.days).filter(k=>k<todayKey()&&S.days[k].ci).sort().pop();
-    const pv=prev?S.days[prev].ci:null;
-    h+=`<div class="card"><div class="row sp"><span class="eyebrow">Check-in</span><button class="sm sec" data-act="checkin">Refazer</button></div>
-     <p style="margin:8px 0 6px">Inchaço <b>${d.ci.swell}</b>/10 · Dor <b>${d.ci.pain}</b>/10 ${pv?`<span class="mut">(último: ${pv.swell} e ${pv.pain})</span>`:''}</p>
-     <span class="badge ${g.lv==='ok'?'ok':g.lv==='light'?'warn':''}">${{ok:'Liberado',light:'Volume reduzido',rest:'Descanso ativo',stop:'Suspenso',emergency:'Emergência'}[g.lv]}</span>
-     <p class="mut" style="margin:8px 0 0">${esc(g.msg)}</p></div>`;
-  }
-  if(g.lv!=='stop'&&g.lv!=='emergency'){
-    h+=`<div class="card"><div class="row sp" style="margin-bottom:8px"><span class="eyebrow">Onde vai ser hoje?</span>${d.place?'<span class="badge">só hoje</span>':''}</div>${seg(mode,m=>`data-act="place" data-v="${m}"`)}</div>`;
-    if(d.ci){
-      const sg=suggest(),m=KINDS[sg.kind];
-      h+=`<div class="card hl"><div class="item"><div class="ico">${m.ico}</div><div style="flex:1"><div class="eyebrow">Sugestão de hoje</div><h2 style="margin:2px 0 4px">${m.n}</h2><p class="mut" style="margin:0 0 12px">${esc(sg.reason)}</p>
-       <button class="block" data-act="start" data-v="${sg.kind}">${sg.rest?'Fazer alongamento':'Começar'}</button><p class="mut" style="margin:10px 0 0">Outras opções na aba Treinar.</p></div></div></div>`;
-    }
-  }
-  h+=`<div class="card"><span class="eyebrow">Metas da semana</span>
-   <div style="margin-top:8px"><div class="row sp"><span>🚶 Aeróbico moderado</span><b>${ws.aero} / ${p.aero} min</b></div>${bar(ws.aero,p.aero)}</div>
-   <div style="margin-top:8px"><div class="row sp"><span>💪 Treinos de força</span><b>${ws.str} / ${p.str}</b></div>${bar(ws.str,p.str)}</div>
-   <div style="margin-top:8px"><div class="row sp"><span>⏸️ Pausas ativas hoje</span><b>${brkToday} / ${p.brk}</b></div>${bar(brkToday,p.brk)}</div></div>`;
-  if(d.sessions.length){
-    h+=`<div class="card"><h2>✅ Feito hoje</h2>${d.sessions.map(s=>{const m=KINDS[s.sub||s.kind];return `<div class="sess">${m.ico} ${m.n} · ${s.min} min${s.light?' (leve)':''}${s.dist?` · ${(s.dist/1000).toFixed(2)} km`:''}${s.after?` <span class="badge">pernas: ${s.after}</span>`:''}</div>`}).join('')}</div>`;
-  }
-  h+=`<div class="warn">Este app não substitui sua médica. Pare se sentir dor forte, e use as pausas só com o carro parado.</div>`;
+  const p=prog(),ws=weekStats(),d=D(),g=gate(d.ci),idx=daysSince(S.weekStart),mode=modeFor(todayKey());
+  const brk=d.sessions.filter(s=>s.kind==='break'||s.kind==='stretch').length;
+  let h=pageTop(greeting(),new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'}));
+  if(g.lv==='emergency'||g.lv==='stop')h+=`<div class="alert"><b>${g.lv==='emergency'?'Atenção':'Hoje não treine'}</b><p style="margin:6px 0 0">${esc(g.msg)}</p>${g.lv==='emergency'?`<a class="btn" href="tel:192">${ic('phone',20)} Ligar 192 (SAMU)</a>`:''}</div>`;
+  if(idx>=7)h+=`<div class="card"><h2>Semana concluída</h2><p class="mut" style="margin:0 0 12px">Veja o resumo e decida se avança, repete ou reduz a carga.</p><button class="block" data-act="review">Revisar a semana</button></div>`;
+  if(!d.ci||EDIT)h+=ciForm();
+  else{h+=ciSummary(d.ci,g);if(g.lv!=='stop'&&g.lv!=='emergency')h+=mainCard(g,mode)}
+  if(new Date().getHours()>=SH().e&&d.ci&&g.lv!=='stop'&&g.lv!=='emergency'&&!d.sessions.some(s=>s.sub==='elev'))h+=`<button class="opt" style="margin:12px 0" data-act="start" data-v="elev"><span class="ib">${ic('bed',22)}</span><span>Fim do turno: pernas para cima<small>10 min deitado. Opcional. Evidência limitada.</small></span><span class="go">${ic('chev',18)}</span></button>`;
+  h+=`<div class="card"><div class="row sp" style="flex-wrap:nowrap"><div><div class="eyebrow">Pausas ativas</div><b>${brk} de ${p.brk} hoje</b><div class="mut" style="font-size:14px" id="lastmove">${lastMoveText()}</div></div><div class="dots" aria-hidden="true">${Array.from({length:p.brk},(_,i)=>`<i class="${i<brk?'on':''}"></i>`).join('')}</div></div>
+   <div class="row" style="margin-top:12px;flex-wrap:nowrap;gap:8px"><button class="sec" style="flex:1;padding:0 6px" data-act="start" data-v="micro" ${canDo('micro')?'':'disabled'}>${ic('pulse',20)} 1 min</button><button class="sec" style="flex:1;padding:0 6px" data-act="start" data-v="sit" ${canDo('sit')?'':'disabled'}>${ic('chair',20)} Sentado</button><button class="sec" style="flex:1;padding:0 6px" data-act="start" data-v="stand" ${canDo('stand')?'':'disabled'}>${ic('person',20)} Em pé</button></div>
+   <div class="row sp" style="margin-top:6px"><span class="mut" style="font-size:14px">1 min e Sentado: só com o carro parado.</span><button class="link" data-act="science">Por que pausar?</button></div></div>`;
+  h+=`<div class="card"><div class="row sp" style="flex-wrap:nowrap"><div class="row" style="gap:14px;flex-wrap:nowrap">${ring(overallPct(),64,8,'var(--pri)','var(--bd)')}<div><div class="eyebrow">Semana ${S.week} de ${PROG.length}</div><b>${ws.aero} de ${p.aero}&nbsp;min</b><div class="mut">Força ${ws.str} de ${p.str}</div></div></div><button class="link" data-act="tab" data-v="progresso">Progresso ${ic('chev',16)}</button></div><div style="margin-top:14px">${weekStrip()}</div></div>`;
+  if(d.sessions.length)h+=`<div class="card"><h2>Feito hoje</h2>${d.sessions.map(s=>{const m=kindOf(s);return `<div class="sess"><span class="pill ok">${ic('check',14)}</span><span>${m.n} · ${esc(s.min)} min${s.light?' (leve)':''}${s.dist?` · ${(s.dist/1000).toFixed(2)} km`:''}${s.after?` · pernas ${esc(s.after)}`:''}</span></div>`}).join('')}</div>`;
+  h+=`<p class="foot">Este app não substitui sua médica. Pare se sentir dor forte.</p>`;
   return h;
 }
 
 function viewSemana(){
   if(!S.onboarded)return viewOnboard();
-  const p=prog(),pc=planCheck(),today=new Date().getDay();
-  const line=m=>m==='rua'?`🚶 Caminhada de ${p.sess} min`:m==='casa'?'🏠 Cardio ou força em casa':'😴 Descanso (alongamento opcional)';
-  return pageHead('Minha semana','Escolha onde e quando treinar em cada dia.')+
-  `<div class="card"><span class="eyebrow">Modelos rápidos</span><div style="margin-top:6px">${Object.entries(PRESETS).map(([k,pr])=>`<button class="chipb ${S.preset===k?'on':''}" data-act="preset" data-v="${k}">${pr.n}</button>`).join('')}</div></div>`+
-  ORDER.map(i=>{const pl=S.plan[i];return `<div class="card"><div class="row sp" style="flex-wrap:nowrap;margin-bottom:10px"><div><b style="font-size:18px">${DOW[i]}</b>${i===today?' <span class="badge ok">hoje</span>':''}<div class="mut">${line(pl.mode)}</div></div>
-    <div style="width:118px;flex:none"><input type="time" data-time="${i}" value="${esc(pl.time||'')}" aria-label="Horário de ${DOW[i]}"></div></div>
-    ${seg(pl.mode,m=>`data-act="plan" data-d="${i}" data-v="${m}"`)}</div>`}).join('')+
-  `<div class="card hl"><h2>📊 Resumo do plano</h2><p style="margin:0 0 6px"><b>${pc.casa}</b> em casa · <b>${pc.rua}</b> na rua · <b>${pc.desc}</b> de descanso</p>${pc.msgs.map(m=>`<p class="mut" style="margin:6px 0">${esc(m)}</p>`).join('')}
-   <p class="mut" style="margin:6px 0 0">Se definir um horário, o app avisa na hora do treino (com o app aberto). Para mudar só o dia de hoje, use a aba Hoje.</p></div>`;
-}
-
-function viewTreinar(){
-  if(!S.onboarded)return viewOnboard();
-  const p=prog(),g=gate(D().ci),light=g.lv==='light',mode=modeFor(todayKey());
-  const m=Math.max(8,Math.round(p.sess*(light?0.6:1)));
-  let items=[
-   ['walk','Rua',`${m} min · ao ar livre`,'Intervalos de ritmo moderado e leve, com alongamento no fim. Conta como atividade aeróbica.'],
-   ['cardio','Casa',`${m} min · em casa`,'Marcha no lugar e passos laterais, sem pulos. Conta como atividade aeróbica.'],
-   ['strength','Casa','~15 min · em casa','Circuito de força com o peso do corpo, cadeira e parede.'],
-   ['stretch','Qualquer lugar','~4 min','Alongamento e mobilidade de tornozelo, panturrilha e coxa.'],
-   ['sit','Carro parado','~4 min · sentado','Só com o carro parado, em local seguro.'],
-   ['stand','Em pé','~4 min · em pé','Ao descer do carro.']];
-  const rank=k=>mode==='rua'?['walk','strength','cardio','stretch','stand','sit']:mode==='casa'?['strength','cardio','walk','stretch','stand','sit']:['stretch','sit','stand','walk','cardio','strength'];
-  const order=rank();items.sort((a,b)=>order.indexOf(a[0])-order.indexOf(b[0]));
-  let h=pageHead('Treinar',`Hoje no seu plano: ${MODES[mode].ico} ${MODES[mode].n}`);
-  h+=`<div class="card"><div class="row sp" style="margin-bottom:8px"><span class="eyebrow">Onde você está agora?</span>${D().place?'<span class="badge">só hoje</span>':''}</div>${seg(mode,x=>`data-act="place" data-v="${x}"`)}</div>`;
-  if(g.lv==='none')h+=`<div class="warn">Faça o <a href="#" data-act="checkin">check-in de hoje</a> para liberar caminhada, cardio e força. Alongamento e pausas já estão liberados.</div>`;
-  else if(g.lv!=='ok')h+=`<div class="${g.lv==='light'?'warn':'alert'}">${esc(g.msg)}</div>`;
-  h+=items.map(([k,tag,sub,desc],i)=>`<div class="card item ${i===0&&canDo(k)?'hl':''}"><div class="ico">${KINDS[k].ico}</div><div style="flex:1;min-width:0">
-    <b style="font-size:17px">${KINDS[k].n}</b> ${i===0?'<span class="badge ok">indicado</span>':''}<div class="mut">${sub}</div><span class="badge">${tag}</span>
-    <p class="mut" style="margin:8px 0 10px">${desc}</p><button data-act="start" data-v="${k}" ${canDo(k)?'':'disabled'}>Começar</button></div></div>`).join('');
-  h+=`<div class="card item"><div class="ico">📝</div><div style="flex:1"><b>Registro manual</b><p class="mut" style="margin:4px 0 10px">Fez um exercício sem o app? Registre aqui.</p><button class="sec" data-act="manual">Registrar</button></div></div>
-   <div class="card"><h2>⏰ Lembrete de pausa</h2><p class="mut" style="margin-top:0">Avisa depois de ${S.set.remind||'—'} min sem se mexer, enquanto o app estiver aberto na tela.</p>
-   <div class="row">${[0,45,60,90].map(v=>`<button class="sm ${S.set.remind===v?'':'sec'}" data-act="remind" data-v="${v}">${v?v+' min':'Desligar'}</button>`).join('')}</div></div>`;
-  return h;
+  const pc=planCheck(),today=new Date().getDay();
+  return pageTop('Minha semana','Onde e quando treinar')+
+  `<div class="hscroll">${Object.entries(PRESETS).map(([k,pr])=>`<button class="chip ${S.preset===k?'on':''}" data-act="preset" data-v="${k}" aria-pressed="${S.preset===k}">${pr.n}</button>`).join('')}</div>`+
+  ORDER.map(i=>{const pl=S.plan[i];return `<div class="prow ${i===today?'today':''}"><div class="pd">${DOWS[i]}${i===today?'<small>hoje</small>':''}</div>
+   <div class="pm" role="group" aria-label="${DOW[i]}">${['casa','rua','descanso'].map(m=>`<button class="${pl.mode===m?'on':''}" data-act="plan" data-d="${i}" data-v="${m}" aria-pressed="${pl.mode===m}">${ic(MODES[m].ic,20)}<span>${MODES[m].n}</span></button>`).join('')}</div>
+   <input type="time" data-time="${i}" value="${esc(pl.time||'')}" ${pl.mode==='descanso'?'disabled':''} aria-label="Horário de ${DOW[i]}"></div>`}).join('')+
+  `<p class="mut" style="margin:14px 4px 0">${esc(pc.msg)}</p>
+   <p class="mut" style="margin:8px 4px 0">Com um horário definido, o app avisa na hora do treino (com o app aberto). Para mudar só o dia de hoje, use a aba Hoje.</p>`;
 }
 
 function lineChart(n=21){
   const keys=[];for(let i=n-1;i>=0;i--)keys.push(addDays(todayKey(),-i));
-  if(!keys.some(k=>S.days[k]?.ci))return '<p class="mut">Ainda não há check-ins. Faça o primeiro na aba Hoje.</p>';
+  if(!keys.some(k=>S.days[k]?.ci))return '<p class="mut" style="margin:4px 0 0">Ainda não há check-ins. Faça o primeiro na aba Hoje.</p>';
   const W=320,H=150,L=22,R=8,Tp=8,B=20,iw=W-L-R,ih=H-Tp-B;
   const x=i=>L+iw*i/(n-1),y=v=>Tp+ih*(1-v/10);
-  const series=(f,c)=>{let path='',dots='',pen=false;
+  const series=(f,c,sq)=>{let path='',dots='',pen=false;
     keys.forEach((k,i)=>{const ci=S.days[k]?.ci;if(!ci){pen=false;return}
       const px=x(i).toFixed(1),py=y(ci[f]).toFixed(1);path+=(pen?'L':'M')+px+' '+py+' ';pen=true;
-      dots+=`<circle cx="${px}" cy="${py}" r="3" style="fill:${c}"/>`});
-    return `<path d="${path}" fill="none" stroke-width="2.5" stroke-linejoin="round" style="stroke:${c}"/>${dots}`};
+      dots+=sq?`<rect x="${(px-3).toFixed(1)}" y="${(py-3).toFixed(1)}" width="6" height="6" style="fill:${c}"/>`:`<circle cx="${px}" cy="${py}" r="3" style="fill:${c}"/>`});
+    return `<path d="${path}" fill="none" stroke-width="2.5" stroke-linejoin="round"${sq?' stroke-dasharray="6 4"':''} style="stroke:${c}"/>${dots}`};
   const grid=[0,5,10].map(v=>`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" style="stroke:var(--bd)"/><text x="2" y="${y(v)+4}" font-size="10" style="fill:var(--mut)">${v}</text>`).join('');
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Gráfico de inchaço e dor nos últimos ${n} dias">${grid}${series('swell','var(--pri)')}${series('pain','var(--warn)')}
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Gráfico de inchaço e dor nos últimos ${n} dias">${grid}${series('swell','var(--pri)')}${series('pain','var(--warn)',true)}
    <text x="${L}" y="${H-5}" font-size="10" style="fill:var(--mut)">${fmtDate(keys[0])}</text><text x="${W-R}" y="${H-5}" font-size="10" text-anchor="end" style="fill:var(--mut)">hoje</text></svg>
-   <div class="row mut"><span><b style="color:var(--pri)">●</b> Inchaço</span><span><b style="color:var(--warn)">●</b> Dor</span></div>`;
+   <div class="row mut"><span><b style="color:var(--pri)">●</b> Inchaço (linha contínua)</span><span><b style="color:var(--wt)">■</b> Dor (tracejada)</span></div>`;
 }
 function histBars(){
   const p=prog(),ws=weekStats();
   const items=[...S.history.slice(-7).map(h=>({l:'S'+h.week,pct:Math.min(100,Math.round(h.aero/Math.max(1,h.aeroT)*100)),ok:h.aero>=h.aeroT*0.7})),{l:'Atual',pct:Math.min(100,Math.round(ws.aero/p.aero*100)),cur:true}];
-  return `<div class="hist">${items.map(i=>`<div><i class="${i.cur?'cur':i.ok?'ok':''}" style="height:${Math.max(4,i.pct)}%"></i><span>${i.l}</span></div>`).join('')}</div><p class="mut" style="margin:6px 0 0">Altura = % da meta aeróbica da semana. Verde = ao menos 70%.</p>`;
+  return `<div class="hist">${items.map(i=>`<div><i class="${i.cur?'cur':i.ok?'ok':''}" style="height:${Math.max(4,i.pct)}%"></i><span>${i.l}</span></div>`).join('')}</div><p class="mut" style="margin:6px 0 0">Altura = % da meta aeróbica. Verde = ao menos 70%.</p>`;
+}
+function viewProgresso(){
+  if(!S.onboarded)return viewOnboard();
+  const p=prog(),ws=weekStats(),idx=daysSince(S.weekStart);
+  return pageTop('Progresso',`Semana ${S.week} de ${PROG.length}`)+
+  `<div class="card"><div class="row" style="gap:16px;flex-wrap:nowrap">${ring(overallPct(),84,10,'var(--pri)','var(--bd)')}<div><b style="font-size:18px">${ws.aero} de ${p.aero}&nbsp;min</b><div class="mut">aeróbico moderado</div><b style="font-size:18px">${ws.str} de ${p.str}</b><span class="mut"> treinos de força</span></div></div>
+   <p class="mut" style="margin:12px 0">Inchaço médio ${ws.swell??'-'} · Dor média ${ws.pain??'-'} · Check-ins ${ws.ci}/7</p>
+   <button class="block ${idx>=7?'':'sec'}" data-act="review">${idx>=7?'Revisar a semana':'Encerrar semana agora'}</button></div>
+   <div class="card"><h2>Sintomas (21 dias)</h2>${lineChart()}</div>
+   <div class="card"><h2>Semanas</h2>${histBars()}</div>
+   <div class="card"><h2>Relatório para a médica</h2><p class="mut" style="margin:0 0 12px">Resumo das últimas semanas, pronto para imprimir ou copiar.</p><button class="sec block" data-act="report">${ic('file',20)} Abrir relatório</button></div>`;
+}
+
+const TABS=[['hoje','Hoje','home'],['semana','Semana','cal'],['progresso','Progresso','chart']];
+function render(){
+  applyTheme();
+  $('tabs').innerHTML=TABS.map(([k,l,i])=>`<button class="${tab===k?'on':''}" data-act="tab" data-v="${k}" aria-label="${l}" aria-current="${tab===k?'page':'false'}">${ic(i,22)}${l}</button>`).join('');
+  $('app').innerHTML=({hoje:viewHoje,semana:viewSemana,progresso:viewProgresso})[tab]();
+}
+
+/* ============ Folhas ============ */
+let SETTINGS_OPEN=false,SHEET_LOCK=false,SHEET_FULL=false;
+function sheet(html,o={}){
+  const el=$('sheet'),old=el.querySelector('.sheetin'),keep=o.keep&&old?old.scrollTop:0;
+  SHEET_LOCK=!!o.lock;SHEET_FULL=!!o.full;
+  el.className='overlay show'+(o.full?' full':'');
+  el.innerHTML=`<div class="sheetin" role="dialog" aria-modal="true">${o.full?`<div class="shead"><b>${o.title||''}</b><button class="round" data-act="closeSheet" aria-label="Fechar">${ic('x',20)}</button></div>`:'<div class="grab"></div>'}${html}</div>`;
+  const si=el.querySelector('.sheetin');if(si)si.scrollTop=keep;
+}
+function closeSheet(){const el=$('sheet');el.className='overlay';el.innerHTML='';SETTINGS_OPEN=false;SHEET_LOCK=false;SHEET_FULL=false}
+function ask(title,msg,yesAct,yesLabel,noAct,noLabel,danger){
+  sheet(`<h2>${title}</h2><p class="mut" style="margin:0 0 16px">${msg}</p><button class="block ${danger?'':''}" ${danger?'style="background:var(--red)"':''} data-act="${yesAct}">${yesLabel}</button><button class="gray block" style="margin-top:8px" data-act="${noAct}">${noLabel}</button>`);
+}
+let TT=null;
+function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(TT);TT=setTimeout(()=>t.classList.remove('show'),3200)}
+
+function openAlerts(){
+  const ci=D().ci;
+  sheet(`<h2>Sinais de alerta</h2><p class="mut" style="margin:0">Marque se você tem algum destes sinais agora.</p>
+   ${FLAGS.map((f,i)=>`<label class="chk"><input type="checkbox" data-flag="${i}" ${ci&&(ci.flags||[]).includes(i)?'checked':''}> <span>${f}</span></label>`).join('')}
+   <button class="block" data-act="cisave">Salvar</button><button class="link block" data-act="closeSheet">Cancelar</button>`);
+}
+function saveAlerts(){
+  const flags=[...document.querySelectorAll('[data-flag]')].filter(c=>c.checked).map(c=>Number(c.dataset.flag));
+  const ci=D().ci;
+  if(!flags.length&&!ci){closeSheet();return}
+  D().ci={swell:CI.swell??(ci?ci.swell:0),pain:CI.pain??(ci?ci.pain:0),flags,note:ci?.note||'',ts:Date.now()};
+  EDIT=false;save();closeSheet();render();window.scrollTo(0,0);
+}
+function openMore(){
+  const p=prog(),g=gate(D().ci),light=g.lv==='light';
+  const items=[['walk','Ao ar livre',`${durFor('walk',light)} · intervalos de ritmo moderado e leve`],['cardio','Em casa',`${durFor('cardio',light)} · marcha e passos laterais, sem pulos`],['strength','Em casa','~15 min · cadeira, parede e peso do corpo'],['stretch','Qualquer lugar','~4 min · tornozelo, panturrilha e coxa'],['elev','Deitado','10 min · pernas elevadas, para relaxar no fim do dia']];
+  sheet(`<h2>Outras opções</h2><p class="mut" style="margin:0 0 6px">Escolha outro treino para agora.</p>
+   ${items.map(([k,tag,d])=>`<button class="opt" data-act="start" data-v="${k}" ${canDo(k)?'':'disabled'}><span class="ib">${ic(KINDS[k].ic,22)}</span><span>${KINDS[k].n}<small>${d}</small></span><span class="go">${ic('chev',18)}</span></button>`).join('')}
+   <button class="opt" data-act="manual"><span class="ib">${ic('check',22)}</span><span>Registrar treino feito fora do app<small>Informe o tipo e os minutos</small></span><span class="go">${ic('chev',18)}</span></button>`);
+}
+function openManual(){
+  sheet(`<h2>Registrar treino</h2>
+   <label class="lab" for="mn_k">Tipo</label><select id="mn_k" style="margin-top:6px"><option value="walk">Caminhada na rua</option><option value="cardio">Cardio em casa</option><option value="strength">Força em casa</option></select>
+   <label class="lab" for="mn_m">Minutos</label><input type="number" id="mn_m" min="1" inputmode="numeric" value="15" style="margin-top:6px">
+   <button class="block" style="margin-top:18px" data-act="savemanual">Salvar</button><button class="link block" data-act="closeSheet">Cancelar</button>`);
+}
+function openReview(){
+  const r=weekReview(),{ws,p,prev}=r;
+  const label={avancar:S.week>=PROG.length?'Manter semana '+S.week:'Avançar para a semana '+(S.week+1),repetir:'Repetir a semana '+S.week,reduzir:'Reduzir para a semana '+Math.max(1,S.week-1)};
+  const order=['avancar','repetir','reduzir'].filter(k=>!(k==='avancar'&&r.block));
+  sheet(`<h2>Revisão da semana ${S.week}</h2>
+   <table><tr><td>Aeróbico</td><td><b>${ws.aero}/${p.aero} min</b></td></tr><tr><td>Força</td><td><b>${ws.str}/${p.str}</b></td></tr>
+   <tr><td>Inchaço médio</td><td><b>${ws.swell??'-'}</b>${prev&&prev.swell!=null?` (anterior ${prev.swell})`:''}</td></tr>
+   <tr><td>Dor média</td><td><b>${ws.pain??'-'}</b>${prev&&prev.pain!=null?` (anterior ${prev.pain})`:''}</td></tr>
+   <tr><td>Check-ins</td><td><b>${ws.ci}/7</b></td></tr><tr><td>Dias com alerta</td><td><b>${ws.flags}</b></td></tr></table>
+   <div class="note" style="background:var(--soft);border-color:transparent"><b>Recomendação: ${label[r.rec]}</b><br>${r.why.map(esc).join(' ')}</div>
+   <p class="mut" style="margin:0 0 8px">É uma regra do app, não uma decisão médica.</p>
+   ${order.map(k=>`<button class="block ${k===r.rec?'':'sec'}" style="margin:6px 0" data-act="closeweek" data-v="${k}">${label[k]}</button>`).join('')}
+   <button class="link block" data-act="closeSheet">Agora não</button>`);
 }
 
 function buildReport(){
@@ -498,148 +667,113 @@ function buildReport(){
     const end=addDays(todayKey(),-7*b),start=addDays(end,-6);
     const keys=Array.from({length:7},(_,i)=>addDays(start,i));
     const st=statsFor(keys);
-    rows.push({per:`${fmtDate(start)} a ${fmtDate(end)}`,aero:st.aero,str:st.str,swell:st.swell==null?'-':st.swell,pain:st.pain==null?'-':st.pain,ci:st.ci,flags:st.flags});
+    rows.push({per:`${fmtDate(start)} a ${fmtDate(end)}`,aero:st.aero,str:st.str,swell:st.swell==null?'-':st.swell,pain:st.pain==null?'-':st.pain,ci:st.ci,flags:st.flags,brk:st.brk});
   }
   const cis=[];for(let i=13;i>=0;i--){const k=addDays(todayKey(),-i);const c=S.days[k]?.ci;if(c)cis.push({k,c})}
   const head=[`Relatório de acompanhamento - Pernas em Dia`,`Gerado em ${new Date().toLocaleDateString('pt-BR')}`,S.profile.name?`Nome: ${S.profile.name}`:null,`Programa: semana ${S.week} de ${PROG.length} (início da semana atual: ${fmtDate(S.weekStart)})`,S.profile.doctor?`Orientações registradas pela paciente: ${S.profile.doctor}`:null].filter(Boolean);
-  const text=[...head,'','Últimas 4 semanas (período | aeróbico min | força | inchaço médio | dor média | check-ins | dias com alerta):',
-    ...rows.map(r=>`${r.per} | ${r.aero} | ${r.str} | ${r.swell} | ${r.pain} | ${r.ci} | ${r.flags}`),'',
+  const text=[...head,'','Últimas 4 semanas (período | aeróbico min | força | inchaço médio | dor média | check-ins | dias com alerta | pausas):',
+    ...rows.map(r=>`${r.per} | ${r.aero} | ${r.str} | ${r.swell} | ${r.pain} | ${r.ci} | ${r.flags} | ${r.brk}`),'',
     'Check-ins dos últimos 14 dias (data | inchaço 0-10 | dor 0-10 | alertas | observação):',
     ...(cis.length?cis.map(({k,c})=>`${fmtDate(k)} | ${c.swell} | ${c.pain} | ${(c.flags||[]).length?'SIM':'não'} | ${c.note||''}`):['Sem check-ins.']),'',
     'Observação: dados de autoavaliação registrados em um app, sem valor de diagnóstico.'].join('\n');
   const html=`<p>${head.map(esc).join('<br>')}</p>
-   <table><tr><th>Período</th><th>Aeróbico (min)</th><th>Força</th><th>Inchaço médio</th><th>Dor média</th><th>Check-ins</th><th>Alertas</th></tr>
-   ${rows.map(r=>`<tr><td>${r.per}</td><td>${r.aero}</td><td>${r.str}</td><td>${r.swell}</td><td>${r.pain}</td><td>${r.ci}</td><td>${r.flags}</td></tr>`).join('')}</table>
+   <table><tr><th>Período</th><th>Aeróbico (min)</th><th>Força</th><th>Inchaço médio</th><th>Dor média</th><th>Check-ins</th><th>Alertas</th><th>Pausas</th></tr>
+   ${rows.map(r=>`<tr><td>${r.per}</td><td>${r.aero}</td><td>${r.str}</td><td>${r.swell}</td><td>${r.pain}</td><td>${r.ci}</td><td>${r.flags}</td><td>${r.brk}</td></tr>`).join('')}</table>
    <h3>Check-ins dos últimos 14 dias</h3>
-   ${cis.length?`<table><tr><th>Data</th><th>Inchaço</th><th>Dor</th><th>Alerta</th><th>Observação</th></tr>${cis.map(({k,c})=>`<tr><td>${fmtDate(k)}</td><td>${c.swell}</td><td>${c.pain}</td><td>${(c.flags||[]).length?'SIM':'não'}</td><td>${esc(c.note||'')}</td></tr>`).join('')}</table>`:'<p class="mut">Sem check-ins.</p>'}
-   <p class="mut">Dados de autoavaliação registrados em um app, sem valor de diagnóstico.</p>`;
+   ${cis.length?`<table><tr><th>Data</th><th>Inchaço</th><th>Dor</th><th>Alerta</th><th>Obs.</th></tr>${cis.map(({k,c})=>`<tr><td>${fmtDate(k)}</td><td>${c.swell}</td><td>${c.pain}</td><td>${(c.flags||[]).length?'SIM':'não'}</td><td>${esc(c.note||'')}</td></tr>`).join('')}</table>`:'<p class="mut">Sem check-ins.</p>'}
+   <p class="mut">Escala de 0 (nada) a 10 (máximo). Dados de autoavaliação registrados em um app, sem valor de diagnóstico.</p>`;
   return{text,html};
 }
-
-function viewEvolucao(){
-  if(!S.onboarded)return viewOnboard();
-  const p=prog(),ws=weekStats(),idx=daysSince(S.weekStart);
-  return pageHead('Evolução','Como suas pernas e seu treino estão indo.')+
-  `<div class="card"><div class="row sp"><h2 style="margin:0">Semana ${S.week} de ${PROG.length}</h2><span>${ring(overallPct(),64,7,'var(--pri)','var(--bd)')}</span></div>
-   <p style="margin:6px 0 10px">Aeróbico: <b>${ws.aero}/${p.aero} min</b> · Força: <b>${ws.str}/${p.str}</b> · Pausas: <b>${ws.brk}</b><br>
-   Inchaço médio: <b>${ws.swell??'-'}</b> · Dor média: <b>${ws.pain??'-'}</b> · Check-ins: <b>${ws.ci}/7</b></p>
-   <button class="sm sec" data-act="review">${idx>=6?'Revisar a semana':'Encerrar semana agora'}</button></div>
-   <div class="card"><h2>🩺 Sintomas (21 dias)</h2>${lineChart()}</div>
-   <div class="card"><h2>📊 Semanas</h2>${histBars()}</div>
-   <div class="card" id="report"><h2>📄 Relatório para a médica</h2>${buildReport().html}
-   <div class="row noprint"><button class="sm" data-act="print">Imprimir / salvar PDF</button><button class="sm sec" data-act="copyrep">Copiar texto</button></div></div>`;
+function openReport(){
+  sheet(`<div class="card">${buildReport().html}</div>
+   <div class="row noprint"><button class="sm" data-act="print">Imprimir / salvar PDF</button><button class="sm sec" data-act="copyrep">Copiar texto</button></div>`,{full:true,title:'Relatório'});
 }
 
-function viewGuia(){
+
+/* ============ Base científica e de design ============ */
+const EVID=[
+ {lv:'Diretriz',c:'ok',t:'Meta semanal de atividade',app:'O programa de 8 semanas sobe até 150 min de atividade moderada por semana e 2 a 3 treinos de força. As semanas 1 a 5 ficam abaixo de 150 min de propósito: é uma progressão gradual do app.',res:'A OMS (2020) recomenda 150 a 300 min por semana de atividade aeróbica moderada e fortalecimento muscular em 2 ou mais dias por semana. Diz também que trocar tempo sedentário por atividade de qualquer intensidade, até leve, traz benefícios, e que se deve limitar o tempo sedentário (sem fixar um limite).',lim:'É uma diretriz geral de saúde. Não testa inchaço nas pernas nem este programa.',src:[['OMS 2020, Br J Sports Med','https://bjsm.bmj.com/content/54/24/1451']]},
+ {lv:'Estudo pequeno',c:'warn',t:'Interromper o tempo sentado',app:'Lembrete de micro-pausa a cada 60 min (você pode mudar) e a Pausa em pé, com 3 min de caminhada leve.',res:'Em 11 homens saudáveis de 20 a 35 anos, 3 horas sentados prejudicaram em até 50% a dilatação das artérias da perna já na primeira hora. Com caminhadas de 5 min a 3,2 km/h aos 30 min, 1,5 h e 2,5 h, a função das artérias não caiu.',lim:'Só homens jovens e saudáveis. Mede a artéria, não o inchaço. A fonte é o comunicado da universidade. A micro-pausa de 1 min é uma adaptação do app para facilitar o hábito, sem estudo próprio. A revisão Cochrane de quem trabalha em pé não achou nenhum estudo de pausas ou exercício para prevenir doença venosa (e motorista não trabalha em pé).',src:[['Universidade de Indiana','https://archive.news.indiana.edu/releases/iu/2014/09/slow-walking-sitting-study.shtml'],['Cochrane, quem trabalha em pé','https://cochranelibrary.com/cdsr/doi/10.1002/14651858.CD006345.pub3']]},
+ {lv:'Estudo pequeno',c:'warn',t:'Ficar sentado aumenta o volume da perna',app:'É a razão das pausas ao longo do turno, e não só do treino do dia.',res:'Em 9 homens saudáveis (22,6 anos), 8 horas sentados aumentaram a circunferência da panturrilha em 2,4% e a do tornozelo em 2,7% em relação ao início. Uma meia elástica de baixa pressão até a coxa, usada em uma das pernas, reduziu esse aumento de forma significativa.',lim:'9 jovens saudáveis, um único dia. Mede circunferência, não os sintomas atrás do joelho.',src:[['8 h sentado e inchaço','https://pubmed.ncbi.nlm.nih.gov/34711709/']]},
+ {lv:'Fisiológico',c:'n',t:'Bombeamento de tornozelo sentado',app:'Micro-pausa de 1 min e primeiro exercício da Pausa sentado.',res:'Em 20 homens saudáveis, a velocidade do sangue na veia atrás do joelho (poplítea) caiu de 11 para 3 cm/s ao sentar e subiu para 18 cm/s (IC 95%: 15 a 21) com exercício do tornozelo sentado.',lim:'Mede o fluxo de sangue, não o inchaço. Só homens saudáveis, medição de curta duração.',src:[['Fluxo na veia poplítea','https://www.pubmed.gov/19492154/']]},
+ {lv:'Evidência limitada',c:'warn',t:'Exercício de tornozelo para reduzir edema',app:'Bombeamento de tornozelo e calcanhares para cima, nas pausas sentado.',res:'Em 24 pacientes (28 pernas) com insuficiência venosa e edema (CEAP C3 a C5), 30 min em posição inclinada reduziram o volume da perna em média 92,9 mL com repouso e 135,4 mL com cerca de 10 flexões de tornozelo por minuto com 4 kg (p = 0,0007). Cada paciente foi o próprio comparador, em dias diferentes.',lim:'Sem grupo controle separado, sessão única, 21 dos 24 são mulheres. Não excluiu pacientes com síndrome pós-trombótica e o artigo relata a duração de 2 formas (30 e 45 min). O app usa só o peso do corpo, sentado e sem inclinar as pernas, então não reproduz esse protocolo.',src:[['Exercício vs. repouso','https://link.springer.com/article/10.1186/1755-7682-2-18']]},
+ {lv:'Evidência fraca',c:'warn',t:'Fortalecer a panturrilha',app:'Elevação de panturrilha e levantar da cadeira no treino de força.',res:'Num ensaio com 31 pessoas com insuficiência venosa avançada (CEAP 4 a 6, todas usando meia classe II), 6 meses de fortalecimento supervisionado da panturrilha melhoraram a fração de ejeção e o volume residual (função da bomba muscular) e a força. Refluxo e qualidade de vida não mudaram. Uma revisão de 11 estudos concluiu que o treino melhora bomba, força e amplitude do tornozelo, mas descreve a evidência como fraca, em geral sem grupo controle.',lim:'Pacientes com doença venosa já diagnosticada e programa supervisionado. Para insuficiência venosa sem úlcera, a Cochrane achou 2 ensaios (54 pessoas), qualidade muito baixa, e concluiu que a evidência é insuficiente.',src:[['Ensaio de 6 meses','https://pubmed.ncbi.nlm.nih.gov/14718821/'],['Revisão sistemática','https://pmc.ncbi.nlm.nih.gov/articles/PMC8147883'],['Cochrane','https://pubmed.ncbi.nlm.nih.gov/27914110/']]},
+ {lv:'Evidência limitada',c:'warn',t:'Pernas para cima',app:'Opção de fim de turno: 10 min deitado, com as pernas mais altas que o quadril.',res:'Em 60 pacientes internados sem doença venosa, elevar as pernas (15° ou 30°) durante a internação reduziu a panturrilha em 2,5 cm e o tornozelo em 2,7 cm, contra aumento de 0,5 e 1 cm sem elevação, e diminuiu a sensação de peso. No estudo do exercício de tornozelo, 30 min com as pernas inclinadas já reduziram o volume em média 92,9 mL.',lim:'Pacientes internados, e a elevação foi mantida durante a internação, não em 10 min. O artigo também se descreve de 2 formas (ensaio e estudo observacional). Os 10 min do app são uma escolha prática, não uma dose testada.',src:[['Elevação das pernas, 2022','https://iris.uniroma1.it/retrieve/c77664ad-0e6f-4dc4-ba4d-8b8c42b02a99/Ielapi_Elevate_2022.pdf']]},
+ {lv:'Laboratório',c:'n',t:'Calcanhares para cima sentado (sóleo)',app:'Segundo exercício da Pausa sentado.',res:'Em 10 adultos (5 homens e 5 mulheres), 270 min de flexão repetida do sóleo sentado levaram o gasto de energia de 0,92 para 2,03 METs. Em outro experimento (15 pessoas), a subida da glicose após a refeição ficou até 52% menor.',lim:'Estudo de laboratório, com protocolo específico. Não mediu inchaço nem fluxo nas pernas. O app usa o exercício só como movimento de pausa e não promete efeito no inchaço.',src:[['Estudo do sóleo, 2022','https://pmc.ncbi.nlm.nih.gov/articles/PMC9404652']]},
+ {lv:'Evidência limitada',c:'warn',t:'Meia de compressão',app:'O app não indica meia. Pergunte à sua médica.',res:'Em 12 voluntários, ao longo de 4 dias, o volume da perna aumentou 62,4 mL (esquerda) e 94,4 mL (direita) em 7 horas sem meia. Meias de compressão de 11 a 21 mmHg (até o joelho) fizeram o volume cair 34 a 59 mL. Na Cochrane sobre quem trabalha em pé, o único estudo (comissárias de bordo, 19 pessoas) testou só meia, e a evidência foi considerada fraca.',lim:'Amostra pequena e curto prazo. A indicação e a pressão certas dependem de avaliação médica.',src:[['Meias e inchaço no trabalho','https://pubmed.ncbi.nlm.nih.gov/15099316/'],['Cochrane','https://cochranelibrary.com/cdsr/doi/10.1002/14651858.CD006345.pub3']]},
+ {lv:'Atenção',c:'red',t:'Inchaço atrás do joelho nem sempre é venoso',app:'Sinais de alerta no check-in e perguntas para a consulta.',res:'O cisto de Baker é uma bolsa de líquido atrás do joelho, em geral causada por um problema dentro da articulação (artrose, artrite reumatoide, lesão de menisco ou ligamento). Um cisto grande pode comprimir veias e imitar trombose. Se dor e inchaço da panturrilha estão aumentando, o OrthoInfo orienta buscar atendimento logo. Na trombose, a Mayo Clinic lista inchaço, dor ou cãibra na panturrilha, mudança de cor e calor, e cita que ficar muito tempo sentado, como ao dirigir, aumenta o risco.',lim:'O app não diagnostica. Quem define a causa e o exercício adequado é a sua médica.',src:[['OrthoInfo: cisto de Baker','https://www.orthoinfo.org/diseases--conditions/bakers-cyst-popliteal-cyst/'],['Mayo Clinic: trombose','https://www.mayoclinic.org/diseases-conditions/deep-vein-thrombosis/symptoms-causes/syc-20352557']]}];
+const DESIGN=[
+ {lv:'Apple',c:'n',t:'Treino guiado',app:'Tela de treino enxuta, só com o passo atual, o tempo e os controles. Contagem Prepare-se ao iniciar, resumo no final e texto grande. Sessões com menos de 2 min são descartadas (regra do app).',res:'As diretrizes de design da Apple para treinos pedem: não distrair com informação irrelevante, controles fáceis de achar e tocar, feedback claro ao iniciar e parar, resumo no final, descartar sessões extremamente curtas e texto grande e de alto contraste em movimento.',lim:'Seguimos os princípios. A Apple pede que os anéis de atividade sejam usados só para o propósito documentado, então o anel de progresso do app é próprio e mostra a meta semanal.',src:[['Apple HIG: Workouts','https://developer.apple.com/design/human-interface-guidelines/workouts.md']]},
+ {lv:'Hábito',c:'n',t:'Fácil de começar, na hora certa',app:'Micro-pausa de 1 min, início com um toque e lembrete só dentro do horário do seu turno, com o botão Fazer agora.',res:'No modelo de comportamento de Fogg (Stanford), motivação, capacidade e um gatilho precisam se juntar no mesmo momento, e motivação e capacidade podem ser trocadas entre si: com motivação muito alta, a capacidade pode ser baixa. O app aposta no outro lado dessa troca, deixando a ação bem fácil (inferência nossa, não conclusão do modelo).',lim:'É um modelo de design, não um resultado clínico. Nenhum estudo aqui testou o app.',src:[['Stanford Behavior Design Lab','https://behaviordesign.stanford.edu/resources/fogg-behavior-model']]},
+ {lv:'Meta-análise',c:'n',t:'Metas claras e registro simples',app:'Metas visíveis na tela inicial e registro de cada sessão e pausa.',res:'Numa meta-regressão de 50 estudos (5.997 pessoas) de intervenções de atividade física por celular, metas de comportamento (Δg = 0,20) e automonitoramento (0,17) se associaram a mais sucesso. Usar qualquer uma das duas chegou a 0,31, contra 0,01 sem nenhuma. Combinar as duas não somou.',lim:'Pessoas variadas, sem foco em motoristas nem em inchaço. Não avaliou lembretes e avisos como fator.',src:[['Meta-regressão mHealth','https://pmc.ncbi.nlm.nih.gov/articles/PMC6256104']]},
+ {lv:'Estudo pequeno',c:'n',t:'Uma hora em pé',app:'A ideia de mexer-se ao menos 1 minuto por hora inspira o lembrete de 60 min.',res:'A hora em pé do Apple Watch deve registrar ao menos 1 minuto de pé com movimento por hora. Em 20 pessoas saudáveis, ela passou a ser registrada acima de cerca de 97,5 passos ou 100 kJ de energia ativa na hora.',lim:'Maioria de mulheres jovens e saudáveis. Os autores dizem que não se sabe se a hora em pé tem efeito fisiológico, e o estudo não testou se lembretes reduzem o tempo sentado.',src:[['JMIR Formative Research, 2024','https://formative.jmir.org/2024/1/e53806']]},
+ {lv:'Acessibilidade',c:'n',t:'Botões grandes e texto legível',app:'Botões com pelo menos 48 px de altura, texto comum com contraste medido de 4,5:1 ou mais e informação nunca só por cor (a dor no gráfico é tracejada e com marcador quadrado).',res:'O Google recomenda alvos de toque de ao menos 48 dp (cerca de 9 mm), separados por 8 dp. A WCAG 2.2 pede alvos de ao menos 24 por 24 px e contraste de ao menos 4,5:1 para texto comum, e 3:1 para texto grande.',lim:'Medimos as cores e os alvos do app. Teste com leitor de tela e em vários aparelhos continua recomendado.',src:[['Google: tamanho do alvo','https://support.google.com/accessibility/android/answer/7101858'],['WCAG 2.2: tamanho do alvo','https://www.w3.org/WAI/standards-guidelines/wcag/new-in-22/'],['WCAG 2.2: contraste','https://www.w3.org/wai/wcag22/understanding/contrast-minimum.html']]}];
+function openScience(){
+  const link=a=>`<div class="srcs">${a.map(([t,u])=>`<a class="src" href="${u}" target="_blank" rel="noopener">${t}</a>`).join('')}</div>`;
+  const card=e=>`<div class="ev"><span class="pill ${e.c}">${e.lv}</span><h3>${e.t}</h3><p><b>No app:</b> ${e.app}</p><details><summary>Estudo, limites e fontes</summary><p><b>O que mostram:</b> ${e.res}</p><p class="mut"><b>Limites:</b> ${e.lim}</p>${link(e.src)}</details></div>`;
+  sheet(`<p class="mut" style="margin:0 0 4px">Cada recomendação do app, com o estudo, o tamanho da amostra e os limites. Evidência limitada ou fraca significa estudos pequenos, sem grupo controle ou que medem outra coisa que não o inchaço.</p>
+   <div class="card"><h2>Exercícios e hábitos</h2>${EVID.map(card).join('')}</div>
+   <div class="card"><h2>Como o app foi desenhado</h2>${DESIGN.map(card).join('')}</div>
+   <div class="note">Nenhum estudo aqui testou este app nem motoristas com inchaço atrás do joelho. O app não faz recomendações sobre dieta, hidratação ou posição ao dirigir, porque não verifiquei evidência sobre esses temas. Tudo é informação geral e não substitui sua médica.</div>`,{full:true,title:'Base científica'});
+}
+
+function openSettings(keep){
+  SETTINGS_OPEN=true;
   const link=(u,t)=>`<a href="${u}" target="_blank" rel="noopener">${t}</a>`;
-  return pageHead('Guia','Segurança, ajustes e fontes.')+
-  `<div class="alert"><b>🚨 Sinais de alerta</b><ul class="l">${FLAGS.map(f=>`<li>${f}</li>`).join('')}</ul>
+  sheet(`
+  <div class="card"><h2>Perfil</h2>
+   <label class="lab" for="st_name">Seu nome</label><input type="text" id="st_name" data-prof="name" value="${esc(S.profile.name)}" style="margin-top:6px">
+   <label class="lab" for="st_doc">Orientações da médica</label><textarea id="st_doc" rows="3" data-prof="doctor" placeholder="Ex.: caminhadas leves, evitar agachar fundo..." style="margin-top:6px">${esc(S.profile.doctor)}</textarea></div>
+  <div class="card"><h2>Aparência</h2>
+   <div class="lab">Cor</div><div style="margin-top:8px">${swatches()}</div>
+   <div class="lab">Tema</div><div class="seg" style="margin-top:8px">${[['auto','Automático'],['light','Claro'],['dark','Escuro']].map(([k,n])=>`<button class="${S.theme===k?'on':''}" data-act="theme" data-v="${k}" aria-pressed="${S.theme===k}">${n}</button>`).join('')}</div></div>
+  <div class="card"><h2>Treino</h2>
+   <div class="row sp" style="margin-top:8px"><span>Voz durante o treino</span><button class="sm ${S.set.voice?'':'sec'}" data-act="toggle" data-v="voice" aria-pressed="${S.set.voice}">${S.set.voice?'Ligada':'Desligada'}</button></div>
+   <div class="row sp" style="margin-top:8px"><span>Medir distância (GPS)</span><button class="sm ${S.set.gps?'':'sec'}" data-act="toggle" data-v="gps" aria-pressed="${S.set.gps}">${S.set.gps?'Ligado':'Desligado'}</button></div>
+   <div class="lab">Horário do turno (para os lembretes)</div><div class="row" style="margin-top:8px;flex-wrap:nowrap"><select data-shift="shiftStart" aria-label="Início do turno">${Array.from({length:24},(_,i)=>`<option value="${i}" ${SH().s===i?'selected':''}>${pad(i)}:00</option>`).join('')}</select><span>até</span><select data-shift="shiftEnd" aria-label="Fim do turno">${Array.from({length:24},(_,i)=>`<option value="${i}" ${SH().e===i?'selected':''}>${pad(i)}:00</option>`).join('')}</select></div>
+   <div class="lab">Lembrete de pausa</div><div class="chips" style="margin-top:8px">${[0,45,60,90].map(v=>`<button class="chip ${S.set.remind===v?'on':''}" data-act="remind" data-v="${v}">${v?v+' min':'Não'}</button>`).join('')}</div>
+   <p class="mut" style="margin:8px 0 0;font-size:14px">Lembretes e avisos só funcionam com o app aberto na tela. O GPS também precisa da tela ligada.</p>
+   <button class="sm sec" style="margin-top:10px" data-act="notif">Permitir notificações</button></div>
+  <div class="alert"><b>Sinais de alerta</b><ul class="l">${FLAGS.map(f=>`<li>${f}</li>`).join('')}</ul>
    <p style="margin:6px 0 0">Com qualquer um deles, não treine e procure atendimento. Com falta de ar, dor no peito ou desmaio, ligue <b>192 (SAMU)</b>.</p></div>
-  <div class="card"><h2>🎨 Personalizar</h2>
-   <label class="mut">Seu nome</label><input type="text" data-prof="name" value="${esc(S.profile.name)}">
-   <label class="mut" style="display:block;margin:12px 0 6px">Cor do app</label>${swatches()}
-   <label class="mut" style="display:block;margin:12px 0 6px">Tema</label>
-   <div class="seg">${[['auto','Automático'],['light','Claro'],['dark','Escuro']].map(([k,n])=>`<button class="${S.theme===k?'on':''}" data-act="theme" data-v="${k}">${n}</button>`).join('')}</div>
-   <label class="mut" style="display:block;margin:12px 0 6px">Orientações da médica</label><textarea rows="3" data-prof="doctor">${esc(S.profile.doctor)}</textarea>
-   <div class="row" style="margin-top:12px"><button class="sm ${S.set.voice?'':'sec'}" data-act="toggle" data-v="voice">Voz: ${S.set.voice?'ligada':'desligada'}</button>
-   <button class="sm ${S.set.gps?'':'sec'}" data-act="toggle" data-v="gps">GPS: ${S.set.gps?'ligado':'desligado'}</button>
-   <button class="sm sec" data-act="notif">Notificações</button></div>
-   <p class="mut" style="margin-bottom:0">O GPS mede a distância da caminhada e só funciona com o app aberto e a tela ligada.</p></div>
-  <div class="card"><h2>🗺️ Como o programa funciona</h2>
-   <ul class="l"><li>8 semanas, começando leve e subindo aos poucos até 150 min/semana de atividade moderada (a OMS recomenda de 150 a 300).</li>
-   <li>Força em pelo menos 2 dias por semana, em dias não seguidos.</li>
-   <li>Pausas ativas todos os dias, para quebrar o tempo sentado.</li>
-   <li>Check-in antes de treinar: o app libera, reduz ou suspende o treino conforme sintomas.</li>
-   <li>Revisão semanal: avançar, repetir ou reduzir. Depois da semana 8, mantenha as metas dela.</li></ul>
-   <table><tr><th>Sem.</th><th>Aeróbico</th><th>Sessão</th><th>Força</th></tr>${PROG.map(r=>`<tr><td>${r.w}</td><td>${r.aero} min</td><td>${r.sess} min</td><td>${r.str}x</td></tr>`).join('')}</table></div>
-  <div class="card"><h2>💡 Por que movimentar as pernas</h2>
-   <p>Ficar muito tempo sentado reduz o trabalho dos músculos da perna, que ajudam a empurrar o sangue de volta ao coração. Por isso o programa mistura caminhada, força e pausas curtas. Esta é uma explicação geral: <b>o que é adequado para o seu inchaço quem define é sua médica</b>.</p>
-   <p class="mut" style="margin-bottom:0">As metas de minutos e de força seguem a diretriz da OMS. Os limites de dor e inchaço do check-in são precauções definidas neste app, não critérios médicos.</p></div>
-  <div class="card"><h2>❓ Perguntas para levar à médica</h2><ul class="l">
-   <li>Qual é a causa do inchaço atrás do joelho?</li><li>Há movimentos que devo evitar (agachar fundo, subir escadas, carga)?</li>
-   <li>Qual a intensidade e a duração máximas de caminhada para mim?</li><li>Devo usar meia de compressão ou elevar as pernas durante o dia?</li>
-   <li>Preciso de algum exame?</li><li>Quais sinais devem me fazer procurar atendimento?</li></ul></div>
-  <div class="card"><h2>ℹ️ Sobre este app</h2><p style="margin:0">O Pernas em Dia é uma ferramenta de apoio. Não é dispositivo médico, não foi avaliado ou aprovado por autoridade de saúde, não faz diagnóstico e não substitui consulta. Os dados ficam só neste aparelho.</p></div>
-  <div class="card"><h2>💾 Dados</h2><div class="row"><button class="sm sec" data-act="export">Exportar backup</button>
-   <button class="sm sec" data-act="importbtn">Importar backup</button><button class="sm sec" data-act="restart">Voltar à semana 1</button><button class="sm sec" data-act="reset">Apagar tudo</button></div>
-   <input type="file" id="imp" accept="application/json" style="display:none"></div>
-  <div class="card"><h2>📚 Fontes</h2><ul class="l">
-   <li>${link('https://bjsm.bmj.com/content/54/24/1451','OMS 2020: diretrizes de atividade física e comportamento sedentário (Br J Sports Med)')}: metas de 150 a 300 min, força em 2 dias ou mais, qualquer atividade conta.</li>
-   <li>${link('https://www.mayoclinic.org/diseases-conditions/deep-vein-thrombosis/symptoms-causes/syc-20352557','Mayo Clinic: trombose venosa profunda')}: sintomas e quando procurar ajuda.</li></ul></div>`;
+  <div class="card"><h2>Base científica</h2><p class="mut" style="margin:0 0 12px">Cada recomendação do app, com estudo, amostra e limites.</p><button class="sec block" data-act="science">Ver evidências e fontes</button></div>
+  <div class="card"><h2>Instalar no celular</h2>
+   ${isStandalone()?'<p style="margin:0">O app já está instalado.</p>':INSTALL?'<button class="block" data-act="install">Instalar o app</button>':`<p style="margin:0 0 6px"><b>Android (Chrome):</b> menu ⋮ → <b>Instalar app</b>.</p><p style="margin:0"><b>iPhone (Safari):</b> compartilhar → <b>Adicionar à Tela de Início</b>.</p>`}
+   <p class="mut" style="margin:10px 0 0">Depois de aberto uma vez com internet, funciona também offline.</p></div>
+  <div class="card" style="padding-top:8px;padding-bottom:8px">
+   <details><summary>Como o programa funciona</summary>
+    <ul class="l"><li>8 semanas, subindo aos poucos até 150 min/semana de atividade moderada (a OMS recomenda de 150 a 300).</li><li>Força em pelo menos 2 dias por semana, em dias não seguidos.</li><li>Pausas ativas todos os dias: 1 min (tornozelos), sentado (~3 min) ou em pé (~5 min, com caminhada leve). A meta diária sobe de 3 para 5 pausas.</li><li>Check-in antes de treinar: o app libera, reduz ou suspende o treino.</li><li>Revisão semanal: avançar, repetir ou reduzir. Depois da semana 8, mantenha as metas dela.</li></ul>
+    <table><tr><th>Sem.</th><th>Aeróbico</th><th>Sessão</th><th>Força</th><th>Pausas/dia</th></tr>${PROG.map(r=>`<tr><td>${r.w}</td><td>${r.aero} min</td><td>${r.sess} min</td><td>${r.str}x</td><td>${r.brk}</td></tr>`).join('')}</table><p></p></details>
+   <details><summary>Perguntas para levar à médica</summary><ul class="l">
+    <li>Qual é a causa do inchaço atrás do joelho?</li><li>Há movimentos que devo evitar (agachar fundo, escadas, carga)?</li><li>Qual a intensidade e a duração máximas de caminhada para mim?</li><li>O inchaço atrás do joelho pode ser um cisto de Baker ou outra causa da articulação?</li><li>Meia de compressão e elevar as pernas fazem sentido para mim? Com que pressão e por quanto tempo?</li><li>Preciso de algum exame?</li><li>Quais sinais devem me fazer procurar atendimento?</li></ul></details>
+   <details><summary>Sobre o app</summary>
+    <p>O Pernas em Dia é uma ferramenta de apoio. Não é dispositivo médico, não foi avaliado ou aprovado por autoridade de saúde, não faz diagnóstico e não substitui consulta. Os limites de dor e inchaço do check-in são precauções do app, não critérios médicos. Os dados ficam só neste aparelho.</p>
+    <p>As fontes de cada recomendação estão em Base científica.</p></details></div>
+  <div class="card"><h2>Seus dados</h2>
+   <p class="mut" style="margin:0 0 10px">Ficam salvos só neste aparelho. Armazenamento protegido: <b>${PERSIST===true?'sim':PERSIST===false?'não garantido':'verificando'}</b>. Se limpar os dados do navegador ou desinstalar o app, o progresso some. Exporte um backup de vez em quando.</p>
+   <div class="row"><button class="sm sec" data-act="export">Exportar backup</button><button class="sm sec" data-act="importbtn">Importar backup</button></div>
+   <div class="row" style="margin-top:8px"><button class="sm sec" data-act="restart">Voltar à semana 1</button><button class="sm sec" data-act="reset" style="color:var(--red)">Apagar tudo</button></div>
+   <input type="file" id="imp" accept="application/json" style="display:none"></div>`,{full:true,title:'Ajustes',keep});
 }
-
-function render(){
-  applyTheme();
-  $('tabs').innerHTML=TABS.map(([k,l])=>`<button class="${tab===k?'on':''}" data-act="tab" data-v="${k}" aria-label="${l}"><svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[k]}</svg>${l}</button>`).join('');
-  $('app').innerHTML=({hoje:viewHoje,semana:viewSemana,treinar:viewTreinar,evolucao:viewEvolucao,guia:viewGuia})[tab]();
-}
-
-/* ============ Folhas (check-in, revisão, etc.) ============ */
-function sheet(html){const el=$('sheet');el.innerHTML=`<div class="sheetin">${html}</div>`;el.classList.add('show');el.scrollTop=0}
-function closeSheet(){const el=$('sheet');el.classList.remove('show');el.innerHTML=''}
-
-function openCheckin(){
-  const ci=D().ci||{swell:0,pain:0,flags:[],note:''};
-  sheet(`<h2>🩺 Check-in de hoje</h2><p class="mut">Responda como estão suas pernas agora.</p>
-   <label>Inchaço atrás do joelho: <b id="ci_sw_o">${ci.swell} · ${SW[ci.swell]}</b></label>
-   <input type="range" min="0" max="10" value="${ci.swell}" id="ci_sw" data-lab="sw">
-   <label>Dor ou desconforto: <b id="ci_pn_o">${ci.pain} · ${SW[ci.pain]}</b></label>
-   <input type="range" min="0" max="10" value="${ci.pain}" id="ci_pn" data-lab="sw">
-   <h3>Algum destes sinais?</h3>
-   ${FLAGS.map((f,i)=>`<label class="chk"><input type="checkbox" data-flag="${i}" ${(ci.flags||[]).includes(i)?'checked':''}> <span>${f}</span></label>`).join('')}
-   <input type="text" id="ci_note" placeholder="Observação (opcional)" value="${esc(ci.note||'')}" style="margin:8px 0 14px">
-   <div class="row"><button data-act="saveci">Salvar</button><button class="gray" data-act="closeSheet">Cancelar</button></div>`);
-}
-function saveCheckin(){
-  const flags=[...document.querySelectorAll('[data-flag]')].filter(c=>c.checked).map(c=>Number(c.dataset.flag));
-  D().ci={swell:Number($('ci_sw').value),pain:Number($('ci_pn').value),flags,note:$('ci_note').value.trim(),ts:Date.now()};
-  save();const g=gate(D().ci);
-  sheet(`<h2>${g.lv==='emergency'?'🚨 Atenção':g.lv==='stop'?'⚠️ Hoje não':'✅ Check-in salvo'}</h2><p>${esc(g.msg)}</p><button data-act="closeSheet">OK</button>`);
-  render();
-}
-function openPlanDay(i){
-  const pl=S.plan[i];
-  sheet(`<h2>📅 ${DOW[i]}</h2><p class="mut">Escolha onde treinar neste dia da semana.</p>
-   ${seg(pl.mode,m=>`data-act="plan" data-d="${i}" data-v="${m}" data-from="sheet"`)}
-   <label class="mut" style="display:block;margin:14px 0 6px">Horário do treino (opcional)</label><input type="time" id="pt_time" value="${esc(pl.time||'')}">
-   <div class="row" style="margin-top:16px"><button data-act="savetime" data-d="${i}">Salvar</button><button class="gray" data-act="closeSheet">Fechar</button></div>`);
-}
-function openReview(){
-  const r=weekReview(),{ws,p,prev}=r;
-  const label={avancar:S.week>=PROG.length?'Manter semana '+S.week+' (manutenção)':'Avançar para a semana '+(S.week+1),repetir:'Repetir a semana '+S.week,reduzir:'Reduzir para a semana '+Math.max(1,S.week-1)};
-  const order=['avancar','repetir','reduzir'].filter(k=>!(k==='avancar'&&r.block));
-  sheet(`<h2>📋 Revisão da semana ${S.week}</h2>
-   <table><tr><td>Aeróbico</td><td><b>${ws.aero}/${p.aero} min</b></td></tr><tr><td>Força</td><td><b>${ws.str}/${p.str}</b></td></tr>
-   <tr><td>Inchaço médio</td><td><b>${ws.swell??'-'}</b>${prev&&prev.swell!=null?` (anterior ${prev.swell})`:''}</td></tr>
-   <tr><td>Dor média</td><td><b>${ws.pain??'-'}</b>${prev&&prev.pain!=null?` (anterior ${prev.pain})`:''}</td></tr>
-   <tr><td>Check-ins</td><td><b>${ws.ci}/7</b></td></tr><tr><td>Dias com alerta</td><td><b>${ws.flags}</b></td></tr></table>
-   <h3>Recomendação do app</h3><p><b>${label[r.rec]}</b><br>${r.why.map(esc).join(' ')}</p>
-   <p class="mut">É uma regra do app, não uma decisão médica. A palavra final é sua e da sua médica.</p>
-   ${order.map(k=>`<button class="block ${k===r.rec?'':'sec'}" style="margin:6px 0" data-act="closeweek" data-v="${k}">${label[k]}</button>`).join('')}
-   <button class="gray block" style="margin-top:6px" data-act="closeSheet">Agora não</button>`);
-}
-function openManual(){
-  sheet(`<h2>📝 Registro manual</h2>
-   <label class="mut">Tipo</label><select id="mn_k"><option value="walk">Caminhada na rua</option><option value="cardio">Cardio em casa</option><option value="strength">Força em casa</option></select>
-   <label class="mut" style="display:block;margin-top:10px">Minutos</label><input type="number" id="mn_m" min="1" value="15">
-   <div class="row" style="margin-top:14px"><button data-act="savemanual">Salvar</button><button class="gray" data-act="closeSheet">Cancelar</button></div>`);
-}
+const refresh=()=>{render();if(SETTINGS_OPEN)openSettings(true)};
 
 /* ============ Sessão guiada ============ */
 let RUN=null,PEND=null,AC=null;
-const STEPK={warm:'Aquecimento',work:'Exercício',mod:'Ritmo moderado',easy:'Ritmo leve',rest:'Descanso',cool:'Desaceleração'};
+const STEPK={prep:'Preparar',warm:'Aquecimento',work:'Exercício',mod:'Ritmo moderado',easy:'Ritmo leve',rest:'Descanso',cool:'Desaceleração'};
 function beep(f=880,d=.25){try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);o.frequency.value=f;g.gain.value=.15;o.start();o.stop(AC.currentTime+d)}catch(e){}}
 function speak(t){if(!S.set.voice||!('speechSynthesis'in window))return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='pt-BR';speechSynthesis.speak(u)}catch(e){}}
-function cue(s){beep();try{navigator.vibrate&&navigator.vibrate(200)}catch(e){}speak(s.secs?`${s.n}. ${s.secs>=60?Math.round(s.secs/60*10)/10+' minutos':s.secs+' segundos'}.`:`${s.n}. ${s.reps}.`)}
+function cue(s){beep();try{navigator.vibrate&&navigator.vibrate(200)}catch(e){}speak(s.k==='prep'?'Prepare-se.':s.secs?`${s.n}. ${s.secs>=60?Math.round(s.secs/60*10)/10+' minutos':s.secs+' segundos'}.`:`${s.n}. ${s.reps}.`)}
 const hav=(a,b)=>{const R=6371000,r=x=>x*Math.PI/180,dl=r(b.la-a.la),dn=r(b.lo-a.lo);const h=Math.sin(dl/2)**2+Math.cos(r(a.la))*Math.cos(r(b.la))*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(h))};
 
 async function lockScreen(){try{if(RUN&&navigator.wakeLock)RUN.wl=await navigator.wakeLock.request('screen')}catch(e){}}
-function startSession(kind){
+function startSession(kind,confirmed){
   const g=gate(D().ci),heavy=HEAVY.includes(kind);
-  if(g.lv==='none'&&heavy){openCheckin();return}
-  if(!canDo(kind)){sheet(`<h2>Hoje não</h2><p>${esc(g.msg)}</p><button data-act="closeSheet">OK</button>`);return}
+  if(g.lv==='none'&&heavy){sheet('<h2>Primeiro, o check-in</h2><p class="mut" style="margin:0 0 16px">Responda como estão suas pernas hoje para liberar o treino.</p><button class="block" data-act="gotoci">Fazer check-in</button>');return}
+  if(!canDo(kind)){sheet(`<h2>Hoje não</h2><p class="mut" style="margin:0 0 16px">${esc(g.msg)}</p><button class="block" data-act="closeSheet">Entendi</button>`);return}
+  if((kind==='sit'||kind==='micro')&&!confirmed){sheet(`<h2>O carro está parado?</h2><p class="mut" style="margin:0 0 16px">Faça esta pausa só com o veículo parado, em local seguro. Nunca durante uma corrida.</p><button class="block" data-act="startok" data-v="${kind}">Sim, estou parado</button><button class="gray block" style="margin-top:8px" data-act="closeSheet">Agora não</button>`);return}
+  closeSheet();
   const light=g.lv==='light'&&heavy;
-  RUN={kind,steps:buildSteps(kind,light),i:0,light,startedAt:Date.now(),pausedMs:0,paused:false,dist:0,lb:-1,lastPos:null,watch:null,wl:null};
+  RUN={kind,steps:kind==='elev'?buildSteps(kind,light):[T('Prepare-se','Ajuste a posição. O primeiro passo começa em instantes.',4,'prep'),...buildSteps(kind,light)],i:0,light,startedAt:Date.now(),pausedMs:0,paused:false,dist:0,lb:-1,lastPos:null,watch:null,wl:null};
   const s=RUN.steps[0];if(s.secs)RUN.endAt=Date.now()+s.secs*1000;
   lockScreen();
   if(kind==='walk'&&S.set.gps&&navigator.geolocation){
@@ -655,20 +789,16 @@ function startSession(kind){
 function drawRun(){
   const s=RUN.steps[RUN.i],nx=RUN.steps[RUN.i+1],m=KINDS[RUN.kind];
   $('runner').innerHTML=`<div class="run k-${s.k}">
-   <div class="row sp"><b>${m.ico} ${m.n}${RUN.light?' · leve':''}</b><span class="mut" id="r_el"></span></div>
+   <div class="rtop"><button class="sm gray" data-act="rend">${ic('x',18)} Encerrar</button><span class="mut" id="r_el"></span><button class="round" data-act="rvoice" aria-label="Voz ${S.set.voice?'ligada':'desligada'}">${ic(S.set.voice?'volOn':'volOff',20)}</button></div>
    <div class="bar"><i id="r_bar"></i></div>
-   <div class="mut" style="display:flex;justify-content:space-between"><span>Passo ${RUN.i+1} de ${RUN.steps.length}</span><b style="color:var(--rc)">${STEPK[s.k]||''}</b></div>
-   ${RUN.kind==='sit'?'<div class="warn">Só com o veículo parado, em local seguro.</div>':''}
+   <div class="rmeta"><span>${m.n}${RUN.light?' · leve':''}</span><b>${STEPK[s.k]||''} · ${RUN.i+1}/${RUN.steps.length}</b></div>
+   ${RUN.kind==='sit'||RUN.kind==='micro'?'<div class="note">Só com o veículo parado, em local seguro.</div>':''}
    <h2>${esc(s.n)}</h2>
-   ${s.secs?`<div class="ringbox"><svg viewBox="0 0 240 240" width="240" height="240" aria-hidden="true"><circle cx="120" cy="120" r="106" fill="none" stroke-width="12" style="stroke:var(--bd)"/><circle id="r_ring" cx="120" cy="120" r="106" fill="none" stroke-width="12" stroke-linecap="round" stroke-dasharray="666" stroke-dashoffset="0" transform="rotate(-90 120 120)" style="stroke:var(--rc)"/></svg><div class="t" id="r_t"></div></div>`:`<div class="repbox" id="r_t"></div>`}
+   ${s.secs?`<div class="ringbox"><svg viewBox="0 0 236 236" width="236" height="236" aria-hidden="true"><circle cx="118" cy="118" r="104" fill="none" stroke-width="12" style="stroke:var(--bd)"/><circle id="r_ring" cx="118" cy="118" r="104" fill="none" stroke-width="12" stroke-linecap="round" stroke-dasharray="653.5" stroke-dashoffset="0" transform="rotate(-90 118 118)" style="stroke:var(--rc)"/></svg><div class="t" id="r_t"></div></div>`:`<div class="repbox" id="r_t"></div>`}
    <p>${esc(s.text)}</p>
-   ${nx?`<p class="mut" style="font-size:16px">Próximo: ${esc(nx.n)}</p>`:''}
+   ${nx?`<p class="next">Próximo: ${esc(nx.n)}</p>`:''}
    <div id="r_d" class="mut" style="text-align:center"></div>
-   <div class="row" style="margin-top:auto;justify-content:center;padding-top:12px">
-    ${s.secs?`<button class="sec" data-act="rpause">${RUN.paused?'▶ Continuar':'⏸ Pausar'}</button>`:`<button data-act="rnext">✓ Feito</button>`}
-    <button class="sec" data-act="rskip">Pular ⏭</button>
-    <button class="sec" data-act="rvoice" aria-label="Voz">${S.set.voice?'🔊':'🔇'}</button>
-    <button class="gray" data-act="rend">Encerrar</button></div></div>`;
+   <div class="rbtn">${s.secs?`<button class="big" data-act="rpause">${ic(RUN.paused?'play':'pause',22)} ${RUN.paused?'Continuar':'Pausar'}</button>`:`<button class="big" data-act="rnext">${ic('check',22)} Feito</button>`}<button class="link" data-act="rskip">Pular</button></div></div>`;
   $('runner').classList.add('show');tickRun();
 }
 function tickRun(){
@@ -678,11 +808,11 @@ function tickRun(){
   if(s.secs){
     const left=Math.max(0,Math.ceil((RUN.endAt-now)/1000));
     setText('r_t',fmt(left));
-    const rg=$('r_ring');if(rg&&rg.setAttribute)rg.setAttribute('stroke-dashoffset',(666*(1-Math.min(1,left/s.secs))).toFixed(1));
+    const rg=$('r_ring');if(rg)rg.setAttribute('stroke-dashoffset',(653.5*(1-Math.min(1,left/s.secs))).toFixed(1));
     if(left<=3&&left>0&&RUN.lb!==left&&!RUN.paused){RUN.lb=left;beep(660,.08)}
   }else setText('r_t',s.reps);
   const br=$('r_bar');if(br)br.style.width=Math.round(RUN.i/RUN.steps.length*100)+'%';
-  setText('r_d',RUN.kind==='walk'&&S.set.gps?`📍 ${(RUN.dist/1000).toFixed(2)} km`:'');
+  setText('r_d',RUN.kind==='walk'&&S.set.gps?`${(RUN.dist/1000).toFixed(2)} km`:'');
 }
 function runTick(){
   if(!RUN||RUN.paused)return;
@@ -713,99 +843,148 @@ function finishRun(partial){
   const now=r.paused?r.pausedAt:Date.now();
   const min=Math.max(0,Math.round((now-r.startedAt-r.pausedMs)/60000));
   $('runner').classList.remove('show');$('runner').innerHTML='';
-  PEND={kind:r.kind,log:LOGK[r.kind],min,light:r.light,dist:Math.round(r.dist||0)};
-  const quick=PEND.log==='break'||PEND.log==='stretch';
+  PEND={kind:r.kind,log:LOGK[r.kind],min,light:r.light,dist:Math.round(r.dist||0),rpe:5,partial};
+  const quick=PEND.log==='break'||PEND.log==='stretch'||PEND.log==='rest';
   if(quick){if(partial&&min<1){PEND=null;render();return}PEND.min=Math.max(1,min);savePend({});return}
-  if(min<2){PEND=null;sheet('<h2>Sessão muito curta</h2><p>Não registrei porque durou menos de 2 minutos.</p><button data-act="closeSheet">OK</button>');render();return}
-  sheet(`<h2>${partial?'Sessão encerrada':'🎉 Sessão concluída'}</h2><p>${KINDS[PEND.kind].n}: <b>${min} min</b>${PEND.dist?` · ${(PEND.dist/1000).toFixed(2)} km`:''}</p>
-   <label>Esforço percebido: <b id="rp_o">5 · ${RP[5]}</b></label><input type="range" min="0" max="10" value="5" id="rp" data-lab="rp">
-   <p class="mut" style="margin-top:0">Na caminhada e no cardio, o alvo é 4 a 6 (consegue falar frases).</p>
-   <h3>Como ficaram as pernas?</h3>
-   <div class="row"><button data-act="savepend" data-v="melhor">Melhor</button><button class="sec" data-act="savepend" data-v="igual">Igual</button><button class="sec" data-act="savepend" data-v="pior">Pior</button></div>
-   <button class="gray block" style="margin-top:14px" data-act="discard">Descartar sessão</button>`);
+  if(min<2){PEND=null;sheet('<h2>Sessão muito curta</h2><p class="mut" style="margin:0 0 16px">Não registrei porque durou menos de 2 minutos.</p><button class="block" data-act="closeSheet">OK</button>');render();return}
+  endSheet();
+}
+function endSheet(){
+  sheet(`<h2>${PEND.partial?'Sessão encerrada':'Sessão concluída'}</h2><p class="mut" style="margin:0">${KINDS[PEND.kind].n} · ${PEND.min} min${PEND.dist?` · ${(PEND.dist/1000).toFixed(2)} km`:''}</p>
+   <div class="lab">Esforço</div><div class="chips c3">${[['Leve',3],['Moderado',5],['Forte',8]].map(([n,v])=>`<button class="chip ${PEND.rpe===v?'on':''}" data-act="eff" data-v="${v}" aria-pressed="${PEND.rpe===v}">${n}</button>`).join('')}</div>
+   <div class="lab">Como ficaram as pernas?</div><div class="chips c3">${['melhor','igual','pior'].map(v=>`<button class="chip" data-act="savepend" data-v="${v}">${v[0].toUpperCase()+v.slice(1)}</button>`).join('')}</div>
+   <p class="mut" style="margin:12px 0 0;font-size:14px">Na caminhada e no cardio, o ideal é esforço leve a moderado: dá para falar frases.</p>
+   <button class="link block" data-act="discard">Descartar sessão</button>`,{lock:true});
 }
 function savePend(extra){
-  const s={kind:PEND.log,sub:PEND.kind,min:PEND.min,light:PEND.light,dist:PEND.dist,ts:Date.now(),...extra};
+  if(!PEND)return;
+  const quick=PEND.log==='break'||PEND.log==='stretch'||PEND.log==='rest';
+  const s={kind:PEND.log,sub:PEND.kind,min:PEND.min,light:PEND.light,dist:PEND.dist,ts:Date.now(),...(quick?{}:{rpe:PEND.rpe}),...extra};
   D().sessions.push(s);S.last=Date.now();PEND=null;save();
   const msgs=[];
   if(s.after==='pior'){
     const rec=allSessions().filter(x=>x.after).slice(-2);
     msgs.push(rec.length===2&&rec.every(x=>x.after==='pior')?'As pernas pioraram depois das duas últimas sessões. Reduza o volume e converse com sua médica antes de seguir.':'Pernas piores depois do treino: na próxima vez faça uma versão mais leve e observe.');
   }
-  if(s.rpe>=8)msgs.push('Esforço muito alto. Diminua o ritmo na próxima sessão.');
-  if((s.kind==='walk'||s.kind==='cardio')&&s.rpe!=null&&s.rpe<=2)msgs.push('Esforço bem leve. Se estiver confortável, acelere um pouco nos blocos moderados.');
-  if(s.kind==='break'||s.kind==='stretch'){const n=D().sessions.filter(x=>x.kind==='break'||x.kind==='stretch').length;msgs.push(`Pausas hoje: ${n}/${prog().brk}.`)}
-  sheet(`<h2>✅ Registrado</h2>${msgs.map(m=>`<p>${esc(m)}</p>`).join('')||'<p>Bom trabalho! Cada sessão conta.</p>'}<button data-act="closeSheet">OK</button>`);
-  render();
+  if(s.rpe>=8)msgs.push('Esforço forte. Diminua o ritmo na próxima sessão.');
+  if((s.kind==='walk'||s.kind==='cardio')&&s.rpe!=null&&s.rpe<=3)msgs.push('Esforço leve. Se estiver confortável, acelere um pouco nos blocos moderados.');
+  closeSheet();render();window.scrollTo(0,0);
+  if(msgs.length)sheet(`<h2>Registrado</h2>${msgs.map(m=>`<p>${esc(m)}</p>`).join('')}<button class="block" data-act="closeSheet">OK</button>`);
+  else if(s.kind==='rest')toast('Descanso registrado.');
+  else if(s.kind==='break'||s.kind==='stretch'){const n=D().sessions.filter(x=>x.kind==='break'||x.kind==='stretch').length;toast(`Pausa registrada · ${n} de ${prog().brk} hoje`)}
+  else toast('Sessão registrada. Bom trabalho!');
 }
+
+/* ============ Instalação, atualização e armazenamento ============ */
+let INSTALL=null,PERSIST=null;
+const isStandalone=()=>{try{return (window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true}catch(e){return false}};
+try{window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();INSTALL=e;if(SETTINGS_OPEN)openSettings(true)})}catch(e){}
+try{window.addEventListener('appinstalled',()=>{INSTALL=null;if(SETTINGS_OPEN)openSettings(true)})}catch(e){}
+try{if('serviceWorker'in navigator&&location.protocol!=='file:'){
+  const had=!!navigator.serviceWorker.controller;
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had)showBanner('Nova versão do app pronta.','Atualizar','reload')});
+}}catch(e){}
+try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().then(r=>{PERSIST=r;if(SETTINGS_OPEN)openSettings(true)}).catch(()=>{})}catch(e){}
 
 /* ============ Eventos ============ */
 document.addEventListener('click',e=>{
+  if(e.target.id==='sheet'&&!SHEET_LOCK&&!SHEET_FULL){closeSheet();return}
   const b=e.target.closest('[data-act]');if(!b)return;
   const a=b.dataset.act,v=b.dataset.v,di=b.dataset.d!=null?Number(b.dataset.d):null;
   if(a==='tab'){e.preventDefault();tab=v;render();window.scrollTo(0,0)}
   else if(a==='onboard'){
-    if(!$('ob_ok1').checked||!$('ob_ok2').checked){alert('Marque as duas confirmações para continuar.');return}
-    S.onboarded=true;S.weekStart=todayKey();S.last=Date.now();save();render();
+    if(!$('ob_ok').checked){toast('Marque a confirmação para continuar.');return}
+    S.onboarded=true;S.weekStart=todayKey();S.last=Date.now();save();render();window.scrollTo(0,0);
   }
   else if(a==='preset'){applyPreset(v);render()}
-  else if(a==='accent'){S.accent=v;save();render()}
-  else if(a==='theme'){S.theme=v;save();render()}
-  else if(a==='plan'){setPlanMode(di,v);if(b.dataset.from==='sheet')openPlanDay(di);render()}
-  else if(a==='planday')openPlanDay(di);
-  else if(a==='savetime'){S.plan[di].time=($('pt_time').value||'');save();closeSheet();render()}
-  else if(a==='checkin'){e.preventDefault();openCheckin()}
-  else if(a==='saveci')saveCheckin();
+  else if(a==='accent'){S.accent=v;save();refresh()}
+  else if(a==='theme'){S.theme=v;save();refresh()}
+  else if(a==='plan'){setPlanMode(di,v);render()}
+  else if(a==='cis'){const f=b.dataset.f;CI[f]=Number(v);render()}
+  else if(a==='ciok'){
+    if(CI.swell===null||CI.pain===null)return;
+    D().ci={swell:CI.swell,pain:CI.pain,flags:[],note:D().ci?.note||'',ts:Date.now()};
+    EDIT=false;save();render();window.scrollTo(0,0);
+  }
+  else if(a==='ciedit'){const c=D().ci;CI={swell:c?c.swell:null,pain:c?c.pain:null};EDIT=true;render()}
+  else if(a==='cicancel'){EDIT=false;render()}
+  else if(a==='cialert')openAlerts();
+  else if(a==='cisave')saveAlerts();
+  else if(a==='gotoci'){closeSheet();tab='hoje';render();window.scrollTo(0,0)}
   else if(a==='closeSheet')closeSheet();
   else if(a==='place'){D().place=v;save();render()}
+  else if(a==='more')openMore();
   else if(a==='start')startSession(v);
+  else if(a==='startok'){closeSheet();startSession(v,true)}
+  else if(a==='science')openScience();
+  else if(a==='bannerstart'){$('banner').classList.remove('show');S.last=Date.now();save();if(!RUN){tab='hoje';render();window.scrollTo(0,0);startSession('micro')}}
   else if(a==='rpause'){if(RUN.paused){const dt=Date.now()-RUN.pausedAt;RUN.pausedMs+=dt;if(RUN.endAt)RUN.endAt+=dt;RUN.paused=false}else{RUN.paused=true;RUN.pausedAt=Date.now()}drawRun()}
   else if(a==='rnext'||a==='rskip')advance(false);
   else if(a==='rvoice'){S.set.voice=!S.set.voice;save();if(!S.set.voice){try{speechSynthesis.cancel()}catch(x){}}drawRun()}
-  else if(a==='rend'){if(confirm('Encerrar a sessão agora? Você poderá registrar o que já fez.'))finishRun(true)}
-  else if(a==='savepend'){savePend({rpe:Number($('rp').value),after:v})}
+  else if(a==='rend'){
+    if(!RUN.paused){RUN.paused=true;RUN.pausedAt=Date.now();RUN.autoPaused=true}
+    ask('Encerrar a sessão?','Você poderá registrar o que já fez.','rendyes','Encerrar e registrar','rcancel','Continuar sessão');
+  }
+  else if(a==='rendyes'){closeSheet();if(RUN){RUN.autoPaused=false;finishRun(true)}}
+  else if(a==='rcancel'){closeSheet();if(RUN&&RUN.autoPaused){const dt=Date.now()-RUN.pausedAt;RUN.pausedMs+=dt;if(RUN.endAt)RUN.endAt+=dt;RUN.paused=false;RUN.autoPaused=false}if(RUN)drawRun()}
+  else if(a==='eff'){if(PEND){PEND.rpe=Number(v);endSheet()}}
+  else if(a==='savepend')savePend({after:v});
   else if(a==='discard'){PEND=null;closeSheet()}
   else if(a==='review')openReview();
   else if(a==='closeweek')closeWeek(v);
   else if(a==='manual')openManual();
-  else if(a==='savemanual'){const k=$('mn_k').value,m=Math.max(1,Number($('mn_m').value)||1);D().sessions.push({kind:k,sub:k,min:m,manual:true,ts:Date.now()});S.last=Date.now();save();closeSheet();render()}
-  else if(a==='remind'){S.set.remind=Number(v);S.last=Date.now();save();render()}
-  else if(a==='toggle'){S.set[v]=!S.set[v];save();render()}
-  else if(a==='notif'){if('Notification'in window)Notification.requestPermission().then(()=>alert('Pronto. As notificações só chegam com o app aberto.'));else alert('Seu navegador não suporta notificações.')}
+  else if(a==='savemanual'){const k=$('mn_k').value,m=Math.max(1,Math.min(600,Number($('mn_m').value)||1));D().sessions.push({kind:k,sub:k,min:m,manual:true,ts:Date.now()});S.last=Date.now();save();closeSheet();render();toast('Treino registrado.')}
+  else if(a==='report')openReport();
+  else if(a==='settings')openSettings();
+  else if(a==='remind'){S.set.remind=Number(v);S.last=Date.now();save();refresh()}
+  else if(a==='toggle'){S.set[v]=!S.set[v];save();refresh()}
+  else if(a==='notif'){if('Notification'in window)Notification.requestPermission().then(()=>toast('Pronto. Os avisos só chegam com o app aberto.'));else toast('Seu navegador não suporta notificações.')}
   else if(a==='closeBanner'){$('banner').classList.remove('show');S.last=Date.now();save()}
+  else if(a==='reload')location.reload();
+  else if(a==='install'){if(INSTALL){INSTALL.prompt();INSTALL.userChoice.finally(()=>{INSTALL=null;if(SETTINGS_OPEN)openSettings(true)})}}
   else if(a==='print')window.print();
-  else if(a==='copyrep'){const t=buildReport().text;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>alert('Relatório copiado.')).catch(()=>prompt('Copie o texto:',t))}
+  else if(a==='copyrep'){const t=buildReport().text;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast('Relatório copiado.')).catch(()=>prompt('Copie o texto:',t))}
   else if(a==='export'){const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});const l=document.createElement('a');l.href=URL.createObjectURL(blob);l.download='pernas-em-dia-backup.json';l.click()}
   else if(a==='importbtn')$('imp').click();
-  else if(a==='restart'){if(confirm('Voltar para a semana 1? O histórico de dias é mantido.')){S.week=1;S.weekStart=todayKey();save();render()}}
-  else if(a==='reset'){if(confirm('Apagar todo o histórico e as configurações?')){S=defaults();save();render()}}
-});
-document.addEventListener('input',e=>{
-  const t=e.target;if(t.type==='range'&&t.dataset.lab){setText(t.id+'_o',`${t.value} · ${(t.dataset.lab==='rp'?RP:SW)[t.value]}`)}
+  else if(a==='restart')ask('Voltar à semana 1?','O histórico de dias é mantido.','restartyes','Voltar à semana 1','settings','Cancelar');
+  else if(a==='restartyes'){S.week=1;S.weekStart=todayKey();save();closeSheet();render()}
+  else if(a==='reset')ask('Apagar tudo?','Todo o histórico e as configurações serão apagados deste aparelho. Isso não pode ser desfeito.','resetyes','Apagar tudo','settings','Cancelar',true);
+  else if(a==='resetyes'){S=defaults();OB=false;CI={swell:null,pain:null};EDIT=false;save();closeSheet();tab='hoje';render()}
 });
 document.addEventListener('change',e=>{
   const t=e.target;
-  if(t.dataset.prof){S.profile[t.dataset.prof]=t.value.trim();save()}
+  if(t.id==='ob_ok')OB=t.checked;
+  if(t.dataset.prof){S.profile[t.dataset.prof]=t.value.trim();save();if(!SETTINGS_OPEN&&S.onboarded)render()}
+  if(t.dataset.shift){S.set[t.dataset.shift]=Number(t.value);save()}
   if(t.dataset.time!=null&&t.dataset.time!==''){S.plan[Number(t.dataset.time)].time=t.value||'';save()}
-  if(t.id==='imp'&&t.files[0]){const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(o.v!==2)throw 0;S={...defaults(),...o};save();render();alert('Backup importado.')}catch(x){alert('Arquivo inválido.')}};r.readAsText(t.files[0])}
+  if(t.id==='imp'&&t.files[0]){const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(o.v!==2)throw 0;S={...defaults(),...o};save();closeSheet();render();toast('Backup importado.')}catch(x){toast('Arquivo inválido.')}};r.readAsText(t.files[0])}
 });
-document.addEventListener('visibilitychange',()=>{if(!document.hidden&&RUN){lockScreen();runTick()}});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){if(RUN){lockScreen();runTick()}else checkDay()}});
 setInterval(()=>{if(RUN)runTick()},250);
 
-/* Avisos (com o app aberto): horário do treino planejado e pausa */
-function showBanner(t){setText('bantext',t);$('banner').classList.add('show');try{navigator.vibrate&&navigator.vibrate([200,100,200])}catch(e){}
-  try{if('Notification'in window&&Notification.permission==='granted')new Notification('Pernas em Dia',{body:t})}catch(e){}}
+/* ============ Avisos (com o app aberto) ============ */
+function showBanner(t,label,act){
+  const b=$('banner');b.innerHTML=`<span>${esc(t)}</span><span class="row" style="flex-wrap:nowrap;gap:8px">${act&&act!=='closeBanner'&&act!=='reload'?'<button data-act="closeBanner">Depois</button>':''}<button data-act="${act||'closeBanner'}">${label||'OK'}</button></span>`;b.classList.add('show');
+  try{navigator.vibrate&&navigator.vibrate([200,100,200])}catch(e){}
+  try{if('Notification'in window&&Notification.permission==='granted')new Notification('Pernas em Dia',{body:t})}catch(e){}
+}
+let LASTDAY=todayKey();
+function checkDay(){
+  if(todayKey()!==LASTDAY&&!RUN){LASTDAY=todayKey();CI={swell:null,pain:null};EDIT=false;if(!SHEET_LOCK&&!SETTINGS_OPEN)render()}
+}
 setInterval(()=>{
+  checkDay();setText('lastmove',lastMoveText());
   if(!S.onboarded||RUN)return;
-  const now=new Date(),k=todayKey(),pl=S.plan[now.getDay()],d=S.days[k];
+  const now=new Date(),k=todayKey(),pl=S.plan[now.getDay()],d=S.days[k],mins=now.getHours()*60+now.getMinutes();
   if(pl&&pl.time&&modeFor(k)!=='descanso'&&!(d&&d.notified)){
-    const [hh,mm]=pl.time.split(':').map(Number),mins=now.getHours()*60+now.getMinutes();
+    const [hh,mm]=pl.time.split(':').map(Number);
     const done=d&&d.sessions.some(s=>HEAVY.includes(s.kind));
-    if(!done&&mins>=hh*60+mm&&mins<hh*60+mm+45){D().notified=true;save();showBanner(`${MODES[modeFor(k)].ico} Hora do seu treino (${MODES[modeFor(k)].n}). Abra a aba Hoje.`);return}
+    if(!done&&mins>=hh*60+mm&&mins<hh*60+mm+45){D().notified=true;save();showBanner(`Hora do seu treino (${MODES[modeFor(k)].n}). Abra a aba Hoje.`);return}
   }
-  if(S.set.remind&&Date.now()-S.last>=S.set.remind*60000){
-    showBanner('⏰ Hora de mexer as pernas! Faça uma pausa ativa (com o carro parado).');
-    S.last=Date.now()-S.set.remind*60000+5*60000;save();
+  if(S.set.remind&&mins>=SH().s*60&&mins<SH().e*60&&Date.now()-S.last>=S.set.remind*60000){
+    showBanner('Hora de uma micro-pausa de 1 minuto. Só com o carro parado.','Fazer agora','bannerstart');
+    S.last=Date.now()-S.set.remind*60000+15*60000;save();
   }
 },30000);
 
